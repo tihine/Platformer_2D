@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Test : MonoBehaviour
 {
-    int speed;
-    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +14,5 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void moveCharacter(Vector2 direction)
-    {
-        rb.velocity = direction*speed;
     }
 }
