@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] float speed = 4f;
+    Transform player_transform;
+    float horizontal;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player_transform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        horizontal = Input.GetAxis("Horizontal");
+        moveCharacter(new Vector3 (horizontal, 0,0));
     }
 
-    void moveCharacter(Vector2 direction)
+    public void moveCharacter(Vector3 direction)
     {
-        rb.velocity = direction*speed;
+        player_transform.position += direction * Time.deltaTime * speed;
     }
 }
