@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
             Vector2 move = gamepad.dpad.ReadValue();
             {
                 horizontal = move.x;
+
             }
         }
         if (horizontal == 0)

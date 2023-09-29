@@ -16,12 +16,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        moveCharacter(new Vector3 (horizontal, 0,0));
+        //horizontal = Input.GetAxis("Horizontal");
+        //moveCharacter(new Vector3 (horizontal, 0,0));
     }
 
     public void moveCharacter(Vector3 direction)
     {
         player_transform.position += direction * Time.deltaTime * speed;
+        Debug.Log(direction.x * Time.deltaTime * speed);
     }
 }
