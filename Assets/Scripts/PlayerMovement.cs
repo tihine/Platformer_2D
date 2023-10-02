@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed = 4f;
     Transform player_transform;
     float horizontal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,17 @@ public class PlayerMovement : MonoBehaviour
         //moveCharacter(new Vector3 (horizontal, 0,0));
     }
 
-    public void moveCharacter(Vector3 direction)
+    public void moveCharacter(Vector3 direction,bool canSprint)
     {
-        player_transform.position += direction * Time.deltaTime * speed;
-        Debug.Log(direction.x * Time.deltaTime * speed);
+        if (canSprint)
+        {
+            player_transform.position += direction * 2 * Time.deltaTime * speed;
+            Debug.Log("is sprinting!");
+        }
+        else
+        {
+            player_transform.position += direction * Time.deltaTime * speed;
+        }
     }
+
 }
