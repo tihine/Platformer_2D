@@ -34,7 +34,6 @@ public class Jump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("On rencontre un truc !!");
         isFalling = false;
         isOnGround = true;
         nbPressedXButton = 0;
@@ -42,7 +41,6 @@ public class Jump : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("On rencontre un truc en trigger");
         isFalling = false;
         isOnGround = true;
         nbPressedXButton = 0;
@@ -50,7 +48,7 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
-        if(Gamepad.current.aButton.wasPressedThisFrame && (isOnGround || nbPressedXButton < 2))
+        if((Gamepad.current.aButton.wasPressedThisFrame || Input.GetKeyDown(KeyCode.Space)) && (isOnGround || nbPressedXButton < 2))
         {
             timer = Time.time + timeOfJump;
             time = Time.time;
@@ -78,54 +76,7 @@ public class Jump : MonoBehaviour
 
         if (isFalling && !isOnGround)
         {
-            //Debug.Log("on tombe");
             Falling();
         }
-        
-        
-        
-        // if(Gamepad.current.aButton.wasPressedThisFrame && !isFalling)
-        // {
-        //     timer = Time.time + timeOfJump;
-        //     time = Time.time;
-        // }
-        // if ((Gamepad.current.aButton.IsPressed() || Input.GetKeyDown(KeyCode.Space)) && !isFalling)
-        // {
-        //     nbPressedXButton += 1;
-        //     Debug.Log("on appuie" + nbPressedXButton);
-        //     if (nbPressedXButton == 2)
-        //     {
-        //         Debug.Log("on double saute");
-        //         timer = Time.time + timeOfJump;
-        //         time = Time.time;
-        //     }
-        //     if (time < timer)
-        //     {
-        //         transform.position += Vector3.up * (Time.deltaTime * jumpSpeed);
-        //         time += Time.deltaTime;
-        //     }
-        //     else
-        //     {
-        //         isFalling = true;
-        //         nbPressedXButton = 0;
-        //     }
-        //     
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.E))
-        // {
-        //     //DEBUG to stop falling
-        //     isFalling = false;
-        // }
-        //
-        // if(Gamepad.current.aButton.wasReleasedThisFrame && nbPressedXButton != 1)
-        // {
-        //     isFalling = true;
-        // }
-        //
-        // if (isFalling)
-        // {
-        //     Falling();
-        // }
     }
 }
