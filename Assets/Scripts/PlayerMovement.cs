@@ -34,4 +34,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void dash(Vector3 direction)
+    {
+        Time timer;
+        moveCharacter(direction*20,false);
+    }
+
 }

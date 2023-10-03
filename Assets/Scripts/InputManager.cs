@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         gamepad = Gamepad.current;
-        if (( Input.GetKey(KeyCode.LeftShift))&& sprintDuration>=0) //Input.GetAxis("LeftTrigger") > 0.5f ||
+        if ((Gamepad.current.leftTrigger.isPressed) && sprintDuration>=0) //   Input.GetAxis("LeftTrigger") > 0.5f ||
         {
             canSprint = true;
             sprintDuration -= Time.deltaTime; //substract frame time to the sprint duration
@@ -42,7 +42,10 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
-
+        if(Gamepad.current.rightShoulder.wasPressedThisFrame)
+        {
+            playerMovementScript.dash(new Vector3(horizontal, 0, 0));
+        }
 
         horizontal = Input.GetAxis("Horizontal");
         if (horizontal == 0)
