@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6960367543520171571}
   - component: {fileID: 5280238872694209329}
+  - component: {fileID: 8128850222526158492}
   - component: {fileID: 4660764052655026814}
+  - component: {fileID: 1484571488563845291}
+  - component: {fileID: 8475999560856097021}
   - component: {fileID: 4374265869640227637}
   m_Layer: 0
   m_Name: Player
@@ -42,6 +45,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7396077358688715251}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8128850222526158492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396077358688715251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72baf98926fe39446acb92bf30969696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
 --- !u!23 &4660764052655026814
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84,6 +100,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1484571488563845291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396077358688715251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b2f3cbca4bfda4aa3539cc7fd706c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 9.81
+  masse: 2
+  jumpSpeed: 0
+  timeOfJump: 1
+  isFalling: 0
+  nbPressedXButton: 0
+--- !u!114 &8475999560856097021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396077358688715251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69032531ffffce846a469730458cea55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementScript: {fileID: 0}
 --- !u!65 &4374265869640227637
 BoxCollider:
   m_ObjectHideFlags: 0
