@@ -51,21 +51,27 @@ public class Jump : MonoBehaviour
         }
         return vitesse;
     }
+    
+    public void Jumping(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if ((isOnGround || nbPressedXButton < 2))
+            {
+                timer = Time.time + timeOfJump;
+                time = Time.time;
+
+                nbPressedXButton += 1;
+                
+                //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
+                isJumping = true;
+                isOnGround = false;
+            }
+        }
+    }
 
     void Update()
     {
-        if((Gamepad.current.aButton.wasPressedThisFrame || Input.GetKeyDown(KeyCode.Space)) && (isOnGround || nbPressedXButton < 2))
-        {
-            timer = Time.time + timeOfJump;
-            time = Time.time;
-
-            nbPressedXButton += 1;
-            //Debug.Log("nbpressed : " + nbPressedXButton);
-                
-            //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
-            isJumping = true;
-            isOnGround = false;
-        }
         if(isJumping)
         {
             if (time < timer)

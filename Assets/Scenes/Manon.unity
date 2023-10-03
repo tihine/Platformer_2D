@@ -670,6 +670,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d402eb5fbe6cdf40a01a0668b646e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1396477581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1484571488563845291, guid: 9070529be0f52fa489c4be51f0ff8120, type: 3}
+  m_PrefabInstance: {fileID: 1646891154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396477567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b2f3cbca4bfda4aa3539cc7fd706c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1598738813
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +920,10 @@ PrefabInstance:
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1396477580}
@@ -916,6 +931,22 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1396477580}
+    - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1396477581}
+    - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Jumping
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Jump, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
