@@ -26,8 +26,8 @@ public class CollisionManager : MonoBehaviour
     void Update()
     {
         position = Player.transform.position;
-        float vity = jumpScript.GetVitesseY();
-        vitesse = new Vector3(0, vity, 0);
+        float vitY = jumpScript.GetVitesseY();
+        vitesse = new Vector3(0, vitY, 0);
         PhantomPosition = position + vitesse;
         this.transform.position = PhantomPosition;
     }
@@ -44,4 +44,11 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject != Player)
+        {
+            jumpScript.ChangeFalling(true);
+        }
+    }
 }
