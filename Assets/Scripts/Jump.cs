@@ -8,8 +8,8 @@ public class Jump : MonoBehaviour
 {
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float masse = 2;
-    [SerializeField] private float jumpSpeed;
-    [SerializeField] private float timeOfJump = 1f;
+    [SerializeField] private float jumpSpeed = 10f;
+    [SerializeField] private float timeOfJump = 0.5f;
     private float timer;
     private float time;
     
@@ -21,8 +21,10 @@ public class Jump : MonoBehaviour
     public int nbPressedXButton;
     void Start()
     {
-        isFalling = false;
         nbPressedXButton = 0;
+        isOnGround = false;
+        isFalling = true;
+        isJumping = false;
     }
 
     private void Falling()
@@ -43,10 +45,12 @@ public class Jump : MonoBehaviour
 
     public float GetVitesseY()
     {
+        if (isOnGround)
+        {
+            return 0;
+        }
         return vitesse;
     }
-
-
 
     void Update()
     {
