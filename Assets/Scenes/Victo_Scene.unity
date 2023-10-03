@@ -351,6 +351,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ca7e106a-79c7-4bc4-835b-1190fb5432a9
     m_ActionName: Player/Sprint[/Keyboard/leftCtrl,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1819948536}
+        m_TargetAssemblyTypeName: PlayerMoves, Assembly-CSharp
+        m_MethodName: canDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 80141877-5806-4a8c-8cc7-e8c5bc063f1c
+    m_ActionName: Player/Dash[/Keyboard/x,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -924,6 +940,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   sprint_factor: 3
+  dash_factor: 4
+  dash_timer: 0.5
+  new_speed: 0
   sprintDuration: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
