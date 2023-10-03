@@ -12,31 +12,36 @@ public class CollisionManager : MonoBehaviour
     GameObject Player;
 
     Vector3 PhantomPosition;
-    // Start is called before the first frame update
+    private Jump jumpScript;
+    
     void Start()
     {
         position = transform.position;
         PhantomPosition = position;
-        this.transform.position = position;
+        transform.position = position;
+        jumpScript = Player.GetComponent<Jump>();
     }
 
     // Update is called once per frame
     void Update()
     {
         position = Player.transform.position;
-        float vity = Player.GetComponent<Jump>().GetVitesseY();
+        float vity = jumpScript.GetVitesseY();
         vitesse = new Vector3(0, vity, 0);
         PhantomPosition = position + vitesse;
         this.transform.position = PhantomPosition;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject != Player)
         {
+            jumpScript.ChangeFalling(false);
+            
             Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + collision.gameObject.GetComponent<Renderer>().bounds.size.y / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2, 0);
             Player.transform.position = OnGroundPosition;
-            this.transform.position = OnGroundPosition;
+            transform.position = OnGroundPosition;
         }
     }
+
 }
