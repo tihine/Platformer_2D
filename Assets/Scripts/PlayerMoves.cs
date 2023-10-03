@@ -51,7 +51,10 @@ public class PlayerMoves : MonoBehaviour
             isMoving = false;
         }
     }
-
+    public float getDirection()
+    {
+        return direction.x;
+    }
     
     #region sprint
     public void canSprint(InputAction.CallbackContext context)
@@ -91,6 +94,7 @@ public class PlayerMoves : MonoBehaviour
     }
     #endregion sprint
 
+    #region dash
     public void canDash(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
@@ -106,10 +110,11 @@ public class PlayerMoves : MonoBehaviour
         while (dash_duration < dash_timer)
         {
             Debug.Log(dash_duration);
+            player_transform.Translate(direction * Time.deltaTime * new_speed);
             dash_duration += Time.deltaTime;
         }
         new_speed = speed;
         dash_duration = 0f;
     }
-    
+    #endregion dash
 }
