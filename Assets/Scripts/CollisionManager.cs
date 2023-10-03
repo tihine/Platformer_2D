@@ -23,7 +23,7 @@ public class CollisionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        position = transform.position;
+        position = Player.transform.position;
         float vity = Player.GetComponent<Jump>().GetVitesseY();
         vitesse = new Vector3(0, vity, 0);
         PhantomPosition = position + vitesse;
@@ -36,6 +36,7 @@ public class CollisionManager : MonoBehaviour
         {
             Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + collision.gameObject.GetComponent<Renderer>().bounds.size.y / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2, 0);
             Player.transform.position = OnGroundPosition;
+            this.transform.position = OnGroundPosition;
         }
     }
 }
