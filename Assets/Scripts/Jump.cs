@@ -16,6 +16,7 @@ public class Jump : MonoBehaviour
     public bool isFalling = false;
     private bool isJumping = true;
     private bool isOnGround = true;
+    private float vitesse;
     
     public int nbPressedXButton;
     void Start()
@@ -29,7 +30,13 @@ public class Jump : MonoBehaviour
         if (!isJumping)
         {
             transform.position += Vector3.down * (Time.deltaTime * jumpSpeed * gravity);
+            vitesse = (Vector3.down * (Time.deltaTime * jumpSpeed * gravity)).y;
         }
+    }
+
+    public float GetVitesseY()
+    {
+        return vitesse;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +50,13 @@ public class Jump : MonoBehaviour
     {
         isFalling = false;
         isOnGround = true;
+        nbPressedXButton = 0;
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        isFalling = true;
+        isOnGround = false;
         nbPressedXButton = 0;
     }
 
