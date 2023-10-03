@@ -24,6 +24,8 @@ public class CollisionManager : MonoBehaviour
     void Update()
     {
         position = transform.position;
+        float vity = Player.GetComponent<Jump>().GetVitesseY();
+        vitesse = new Vector3(0, vity, 0);
         PhantomPosition = position + vitesse;
         this.transform.position = PhantomPosition;
     }
