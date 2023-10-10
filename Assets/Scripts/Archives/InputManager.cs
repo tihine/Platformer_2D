@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
     [SerializeField] private PlayerMovement playerMovementScript;
     float horizontal;
     Gamepad gamepad;
@@ -13,10 +14,12 @@ public class InputManager : MonoBehaviour
     float sprintDuration = 2f;
     float sprintRecovery = 0f;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -64,4 +67,5 @@ public class InputManager : MonoBehaviour
         }
         playerMovementScript.moveCharacter(new Vector3(horizontal, 0,0),canSprint);
     }
+
 }

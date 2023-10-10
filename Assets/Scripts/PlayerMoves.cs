@@ -14,13 +14,19 @@ public class PlayerMoves : MonoBehaviour
     bool isMoving = false;
     bool isSprinting = false;
     Vector2 direction = Vector2.zero;
-    [SerializeField] float sprintDuration = 2f;
-    float sprintRecovery = 0f;
+    [SerializeField] public EnergyBar energyBar;
+    [SerializeField] public float energy;
+    [SerializeField] float energy_loss_sprint;
+    public bool malusEnergy = false;
+
     // Start is called before the first frame update
     void Start()
     {
         player_transform=GetComponent<Transform>();
         new_speed = speed;
+        energy = 20f;
+        energyBar.SetEnergy(energy);
+        StartCoroutine(RestoreEnergyCoroutine());
     }
 
     // Update is called once per frame
@@ -62,34 +68,31 @@ public class PlayerMoves : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             isSprinting = true;
-            new_speed = speed * sprint_factor;
+            
         }
         if(context.phase == InputActionPhase.Canceled)
         {
             isSprinting = false;
-            new_speed = speed;
+            
         }
     }
 
     public void sprint(bool isSprinting)
     {
-        if (isSprinting && (sprintDuration >= 0))
+        if (isSprinting && (energy > 0))
         {
-            sprintDuration -= Time.deltaTime;
+            new_speed = speed * sprint_factor;
+            energy -= energy_loss_sprint;
+            energyBar.SetEnergy(energy);
+            if (energy <= 0)
+            {
+                malusEnergy = true;
+            }
             Debug.Log("spriint");
-            Debug.Log(sprintDuration);
         }
         else
         {
-            if (sprintDuration <= 0f) //!!!sprintDuration se régénère seulement quand on a écoulé les 2sec
-            {
-                sprintRecovery += Time.deltaTime;
-                if (sprintRecovery > 3f)
-                {
-                    sprintDuration = 2f;
-                    sprintRecovery = 0f;
-                }
-            }
+            new_speed = speed;
         }
     }
     #endregion sprint
@@ -113,8 +116,36 @@ public class PlayerMoves : MonoBehaviour
             player_transform.Translate(direction * Time.deltaTime * new_speed);
             dash_duration += Time.deltaTime;
         }
+        energy -= 8f;
+        energyBar.SetEnergy(energy);
+        if (energy <= 0)
+        {
+            malusEnergy = true;
+        }
         new_speed = speed;
         dash_duration = 0f;
     }
     #endregion dash
+
+    IEnumerator RestoreEnergyCoroutine()
+    {
+        if (energy < 20)
+        {
+            if (malusEnergy)
+            {
+                for (int i = 0; i < 19; i++)
+                {
+                    energy += 1;
+                    energyBar.SetEnergy(energy);
+                    yield return new WaitForSeconds(0.7f);
+                }
+                malusEnergy = false;
+            }
+            energy += 1;
+            energyBar.SetEnergy(energy);
+        }
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(RestoreEnergyCoroutine());
+
+    }
 }
