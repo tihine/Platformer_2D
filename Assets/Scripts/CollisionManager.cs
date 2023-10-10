@@ -37,14 +37,19 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject != Player)
         {
-            Plateform_type type = collision.gameObject.GetComponent<Plateform_type>();
+            print("collision" + collision.gameObject.name);
+            if(collision.gameObject.GetComponent<Plateform>())
+            {
+                Debug.Log("Plateforme");
+            }
+            Plateform_type type = collision.gameObject.GetComponent<Plateform>().GetTypePlateform();
             float distancex_theory = collision.gameObject.GetComponent<Renderer>().bounds.size.x / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.x / 2;
             float distancey_theory = collision.gameObject.GetComponent<Renderer>().bounds.size.y / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2;
             float plat_size_x = collision.gameObject.GetComponent<Renderer>().bounds.size.x;
             float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y;
             float dist_x = collision.transform.position.x - Player.transform.position.x;
             float dist_y = collision.transform.position.y - Player.transform.position.y;
-
+            
             if (type == Plateform_type.normal)
             {
                 //Si collision par dessus

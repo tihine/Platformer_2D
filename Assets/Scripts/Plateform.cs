@@ -14,4 +14,10 @@ public class Plateform : MonoBehaviour
 {
     [SerializeField]
     Plateform_type type;
+
+    public Plateform_type GetTypePlateform()
+    {
+        return type;
+    }
 }
+
