@@ -31,8 +31,8 @@ public class Jump : MonoBehaviour
     {
         if (!isJumping)
         {
-            transform.position += Vector3.down * (Time.deltaTime * jumpSpeed * gravity);
-            vitesse = (Vector3.down * (Time.deltaTime * jumpSpeed * gravity)).y;
+            transform.position += Vector3.down * (Time.fixedDeltaTime * jumpSpeed * gravity);
+            vitesse = (Vector3.down * (Time.fixedDeltaTime * jumpSpeed * gravity)).y;
         }
     }
 
@@ -97,7 +97,7 @@ public class Jump : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(isJumping)
         {
@@ -105,9 +105,9 @@ public class Jump : MonoBehaviour
             if (time < timer)
             {
                 Debug.Log(timer);
-                transform.position += Vector3.up * (Time.deltaTime * jumpSpeed);
-                vitesse = (Vector3.up * (Time.deltaTime * jumpSpeed)).y;
-                time += Time.deltaTime;
+                transform.position += Vector3.up * (Time.fixedDeltaTime * jumpSpeed);
+                vitesse = (Vector3.up * (Time.fixedDeltaTime * jumpSpeed)).y;
+                time += Time.fixedDeltaTime;
             }
             else
             {
