@@ -36,13 +36,39 @@ public class Jump : MonoBehaviour
         }
     }
 
-    public void ChangeFalling(bool isCurrentlyFalling)
+    public void Plafond()
     {
-        isOnGround = !isCurrentlyFalling;
-        isFalling = isCurrentlyFalling;
+        isJumping = false;
+        isFalling = true;
+    }
+    public void OnGround()
+    {
+        isOnGround = true;
+        isFalling = false;
         nbPressedXButton = 0;
     }
 
+    public void OnFall()
+    {
+        isOnGround = false;
+        isFalling = true;
+    }
+    
+    public void JumpOnCode()
+    {
+        if (isOnGround)
+        {
+            timer = Time.time + timeOfJump;
+            time = Time.time;
+
+            nbPressedXButton += 1;
+
+            //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
+            isJumping = true;
+            isOnGround = false;
+            isFalling= false;
+        }
+    }
     public float GetVitesseY()
     {
         if (isOnGround)
@@ -66,6 +92,7 @@ public class Jump : MonoBehaviour
                 //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
                 isJumping = true;
                 isOnGround = false;
+                isFalling= false;
             }
         }
     }
@@ -74,8 +101,10 @@ public class Jump : MonoBehaviour
     {
         if(isJumping)
         {
+            Debug.Log("jumping");
             if (time < timer)
             {
+                Debug.Log(timer);
                 transform.position += Vector3.up * (Time.deltaTime * jumpSpeed);
                 vitesse = (Vector3.up * (Time.deltaTime * jumpSpeed)).y;
                 time += Time.deltaTime;
