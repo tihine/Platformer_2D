@@ -9,6 +9,7 @@ public enum Plateform_type
     wall,
     bounce,
     pass, 
+    liane,
 }
 public class Plateform : MonoBehaviour
 {

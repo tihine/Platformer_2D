@@ -101,10 +101,8 @@ public class Jump : MonoBehaviour
     {
         if(isJumping)
         {
-            Debug.Log("jumping");
             if (time < timer)
             {
-                Debug.Log(timer);
                 transform.position += Vector3.up * (Time.fixedDeltaTime * jumpSpeed);
                 vitesse = (Vector3.up * (Time.fixedDeltaTime * jumpSpeed)).y;
                 time += Time.fixedDeltaTime;
