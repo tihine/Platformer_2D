@@ -11,6 +11,8 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] float dash_timer = 1f;
     [SerializeField] float new_speed;
     Transform player_transform;
+    [SerializeField] ParticleSystem particles;
+    [SerializeField] ParticleSystem dash_particles;
     bool isMoving = false;
     bool isSprinting = false;
     Vector2 direction = Vector2.zero;
@@ -27,6 +29,7 @@ public class PlayerMoves : MonoBehaviour
         energy = 20f;
         energyBar.SetEnergy(energy);
         StartCoroutine(RestoreEnergyCoroutine());
+        particles.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,6 +46,14 @@ public class PlayerMoves : MonoBehaviour
     public void moveCharacter(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
+        if (direction.x > 0)
+        {
+            particles.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+        }
+        else if (direction.x < 0)
+        {
+            particles.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
         direction.y = 0;
         if (context.phase == InputActionPhase.Started)
         {
@@ -82,6 +93,7 @@ public class PlayerMoves : MonoBehaviour
         if (isSprinting && (energy > 0))
         {
             new_speed = speed * sprint_factor;
+            particles.gameObject.SetActive(true);
             energy -= energy_loss_sprint;
             energyBar.SetEnergy(energy);
             if (energy <= 0)
@@ -93,6 +105,7 @@ public class PlayerMoves : MonoBehaviour
         else
         {
             new_speed = speed;
+            particles.gameObject.SetActive(false);
         }
     }
     #endregion sprint
@@ -110,6 +123,7 @@ public class PlayerMoves : MonoBehaviour
     {
         float dash_duration = 0f;
         new_speed = speed * dash_factor;
+        dash_particles.Play();
         while (dash_duration < dash_timer)
         {
             Debug.Log(dash_duration);
