@@ -33,16 +33,28 @@ public class PlayerMoves : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(isMoving)
         {
-            player_transform.Translate(direction*Time.deltaTime*new_speed);
+            player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
         }
 
         sprint(isSprinting);
     }
 
+    public float GetVitesseX()
+    {
+        if(direction.x < 0)
+        {
+            return -new_speed;
+        }
+        else
+        {
+            return new_speed;
+        }
+        
+    }
     public void moveCharacter(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
@@ -127,8 +139,8 @@ public class PlayerMoves : MonoBehaviour
         while (dash_duration < dash_timer)
         {
             Debug.Log(dash_duration);
-            player_transform.Translate(direction * Time.deltaTime * new_speed);
-            dash_duration += Time.deltaTime;
+            player_transform.Translate(direction * Time.fixedDeltaTime * new_speed);
+            dash_duration += Time.fixedDeltaTime;
         }
         energy -= 8f;
         energyBar.SetEnergy(energy);

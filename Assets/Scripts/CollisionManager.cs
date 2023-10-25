@@ -192,7 +192,6 @@ public class CollisionManager : MonoBehaviour
             {
                 print("exit pendule");
                 penduleScript.OnPenduleExit();
-                penduleScript.SetCurrentPendule(null);
             }
         }
     }
