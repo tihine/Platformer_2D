@@ -11,6 +11,8 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] float dash_timer = 1f;
     [SerializeField] float new_speed;
     Transform player_transform;
+    [SerializeField] ParticleSystem particles;
+    [SerializeField] ParticleSystem dash_particles;
     bool isMoving = false;
     bool isSprinting = false;
     Vector2 direction = Vector2.zero;
@@ -18,7 +20,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] public float energy;
     [SerializeField] float energy_loss_sprint;
     public bool malusEnergy = false;
-
+    public bool OnPenduleGrabb;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,22 +29,53 @@ public class PlayerMoves : MonoBehaviour
         energy = 20f;
         energyBar.SetEnergy(energy);
         StartCoroutine(RestoreEnergyCoroutine());
+        particles.gameObject.SetActive(false);
+        OnPenduleGrabb = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(isMoving)
+        if(isMoving && !OnPenduleGrabb)
         {
-            player_transform.Translate(direction*Time.deltaTime*new_speed);
+            player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
         }
 
         sprint(isSprinting);
     }
 
+    public float GetVitesseX()
+    {
+        if(direction.x < 0)
+        {
+            return -new_speed;
+        }
+        else if (direction.x >0)
+        {
+            return new_speed;
+        }
+        else
+        {
+            return 0;
+        }
+        
+    }
+
+    public void setOnPendule(bool Onpendule)
+    {
+        OnPenduleGrabb= Onpendule;
+    }
     public void moveCharacter(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
+        if (direction.x > 0)
+        {
+            particles.gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+        }
+        else if (direction.x < 0)
+        {
+            particles.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
         direction.y = 0;
         if (context.phase == InputActionPhase.Started)
         {
@@ -55,6 +88,7 @@ public class PlayerMoves : MonoBehaviour
         if (context.phase == InputActionPhase.Canceled)
         {
             isMoving = false;
+            new_speed = 0;
         }
     }
     public float getDirection()
@@ -82,6 +116,7 @@ public class PlayerMoves : MonoBehaviour
         if (isSprinting && (energy > 0))
         {
             new_speed = speed * sprint_factor;
+            particles.gameObject.SetActive(true);
             energy -= energy_loss_sprint;
             energyBar.SetEnergy(energy);
             if (energy <= 0)
@@ -93,6 +128,7 @@ public class PlayerMoves : MonoBehaviour
         else
         {
             new_speed = speed;
+            particles.gameObject.SetActive(false);
         }
     }
     #endregion sprint
@@ -110,11 +146,12 @@ public class PlayerMoves : MonoBehaviour
     {
         float dash_duration = 0f;
         new_speed = speed * dash_factor;
+        dash_particles.Play();
         while (dash_duration < dash_timer)
         {
             Debug.Log(dash_duration);
-            player_transform.Translate(direction * Time.deltaTime * new_speed);
-            dash_duration += Time.deltaTime;
+            player_transform.Translate(direction * Time.fixedDeltaTime * new_speed);
+            dash_duration += Time.fixedDeltaTime;
         }
         energy -= 8f;
         energyBar.SetEnergy(energy);

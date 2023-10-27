@@ -17,6 +17,7 @@ public class Jump : MonoBehaviour
     private bool isJumping = true;
     private bool isOnGround = true;
     private float vitesse;
+    private float acceleration;
     
     public int nbPressedXButton;
     void Start()
@@ -31,8 +32,9 @@ public class Jump : MonoBehaviour
     {
         if (!isJumping)
         {
-            transform.position += Vector3.down * (Time.fixedDeltaTime * jumpSpeed * gravity);
-            vitesse = (Vector3.down * (Time.fixedDeltaTime * jumpSpeed * gravity)).y;
+            transform.position += Vector3.up * (vitesse * Time.fixedDeltaTime);
+            vitesse += acceleration * Time.fixedDeltaTime;
+            acceleration = -gravity;
         }
     }
 
@@ -77,6 +79,11 @@ public class Jump : MonoBehaviour
         }
         return vitesse;
     }
+
+    public float GetGravity()
+    {
+        return gravity;
+    }
     
     public void Jumping(InputAction.CallbackContext context)
     {
@@ -88,8 +95,9 @@ public class Jump : MonoBehaviour
                 time = Time.time;
 
                 nbPressedXButton += 1;
-                
+
                 //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
+                vitesse = vitesse + jumpSpeed;
                 isJumping = true;
                 isOnGround = false;
                 isFalling= false;
@@ -101,12 +109,11 @@ public class Jump : MonoBehaviour
     {
         if(isJumping)
         {
-            Debug.Log("jumping");
             if (time < timer)
             {
-                Debug.Log(timer);
-                transform.position += Vector3.up * (Time.fixedDeltaTime * jumpSpeed);
-                vitesse = (Vector3.up * (Time.fixedDeltaTime * jumpSpeed)).y;
+                transform.position += Vector3.up * (vitesse*Time.fixedDeltaTime);
+                vitesse += acceleration*Time.fixedDeltaTime;
+                acceleration = -gravity;
                 time += Time.fixedDeltaTime;
             }
             else
@@ -119,6 +126,11 @@ public class Jump : MonoBehaviour
         if (isFalling && !isOnGround)
         {
             Falling();
+        }
+        if(isOnGround) 
+        {
+            acceleration = 0;
+            vitesse = 0;
         }
     }
 }
