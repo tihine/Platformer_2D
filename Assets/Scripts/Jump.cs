@@ -32,7 +32,6 @@ public class Jump : MonoBehaviour
     {
         if (!isJumping)
         {
-            print(transform.position);
             transform.position += Vector3.up * (vitesse * Time.fixedDeltaTime);
             vitesse += acceleration * Time.fixedDeltaTime;
             acceleration = -gravity;

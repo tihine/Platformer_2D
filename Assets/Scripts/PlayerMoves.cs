@@ -20,7 +20,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] public float energy;
     [SerializeField] float energy_loss_sprint;
     public bool malusEnergy = false;
-
+    public bool OnPenduleGrabb;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +30,13 @@ public class PlayerMoves : MonoBehaviour
         energyBar.SetEnergy(energy);
         StartCoroutine(RestoreEnergyCoroutine());
         particles.gameObject.SetActive(false);
+        OnPenduleGrabb = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(isMoving)
+        if(isMoving && !OnPenduleGrabb)
         {
             player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
         }
@@ -49,11 +50,20 @@ public class PlayerMoves : MonoBehaviour
         {
             return -new_speed;
         }
-        else
+        else if (direction.x >0)
         {
             return new_speed;
         }
+        else
+        {
+            return 0;
+        }
         
+    }
+
+    public void setOnPendule(bool Onpendule)
+    {
+        OnPenduleGrabb= Onpendule;
     }
     public void moveCharacter(InputAction.CallbackContext context)
     {
@@ -78,6 +88,7 @@ public class PlayerMoves : MonoBehaviour
         if (context.phase == InputActionPhase.Canceled)
         {
             isMoving = false;
+            new_speed = 0;
         }
     }
     public float getDirection()

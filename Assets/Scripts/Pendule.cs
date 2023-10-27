@@ -10,7 +10,7 @@ public class Pendule : MonoBehaviour
     bool Grabbing = false;
     private Jump jumpScript;
     private PlayerMoves playerMovesScript;
-    GameObject currentPendule;
+    Transform currentPendule;
     Vector3 currentOriginPendule;
     float PosTetaPendule;
     float VitTetaPendule;
@@ -37,34 +37,38 @@ public class Pendule : MonoBehaviour
     }
     public void OnPenduleExit()
     {
-        OnPendule = false;  
+        OnPendule = false;
     }
     public void OnGrabbEnter()
     {
-        print("GrabbEnter");
         Grabbing = true;
         if (OnPendule)
         {
             jumpScript.OnGround();
-            Longueurpendule = (currentOriginPendule - transform.position).magnitude;
+            Longueurpendule = (currentOriginPendule - transform.position).magnitude / 5;
+            playerMovesScript.setOnPendule(Grabbing);
         }
     }
     public void OnGrabbExit()
     {
-        print("GrabbExit");
         Grabbing = false;
         if (OnPendule)
         {
             jumpScript.OnFall();
+            playerMovesScript.setOnPendule(Grabbing);
         }
     }
     public void SetCurrentPendule(GameObject pendule)
     {
-        currentPendule = pendule;
-        currentOriginPendule = new Vector3(currentPendule.transform.position.x, currentPendule.transform.position.y + currentPendule.GetComponent<Renderer>().bounds.size.y / 2, 0);
+        if(pendule.transform.parent != currentPendule)
+        {
+            VitTetaPendule = 0f;
+            AccTetaPendule = 0f;
+        }
+        currentPendule = pendule.transform.parent;
+        Longueurpendule = 1f;
         PosTetaPendule = currentPendule.transform.rotation.eulerAngles.z;
-        VitTetaPendule = 0f;
-        AccTetaPendule = 0f;
+        currentOriginPendule = currentPendule.transform.position;
     }
 
     public void GrabLiane(InputAction.CallbackContext context)
@@ -84,22 +88,23 @@ public class Pendule : MonoBehaviour
     {
         if (currentPendule)
         {
-            Longueurpendule = (currentOriginPendule - transform.position).magnitude;
             if (Grabbing & OnPendule)
             {
-                print("Sur le pendule");
+                Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float vitX = playerMovesScript.GetVitesseX();
-                PosTetaPendule = VitTetaPendule * Time.fixedDeltaTime;
+                PosTetaPendule += VitTetaPendule * Time.fixedDeltaTime;
                 VitTetaPendule += AccTetaPendule * Time.fixedDeltaTime;
-                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule) / Longueurpendule + Mathf.Cos(PosTetaPendule) * vitX / Time.fixedDeltaTime / Longueurpendule;
+                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX/20 / Time.fixedDeltaTime;
+                transform.position = new Vector3(currentOriginPendule.x + Longueurpendule * Mathf.Sin(PosTetaPendule * Mathf.PI / 180), currentOriginPendule.y - Longueurpendule * Mathf.Cos(PosTetaPendule * Mathf.PI / 180), 0);
             }
             else
             {
-                PosTetaPendule = VitTetaPendule * Time.fixedDeltaTime;
+                Longueurpendule = 1f;
+                PosTetaPendule += VitTetaPendule * Time.fixedDeltaTime; 
                 VitTetaPendule += AccTetaPendule * Time.fixedDeltaTime;
-                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule) / Longueurpendule;
+                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule*Mathf.PI/180) / Longueurpendule;
             }
-            currentPendule.transform.RotateAround(currentOriginPendule ,new Vector3(0, 0, 1), PosTetaPendule);
+            currentPendule.Rotate(new Vector3(0, 0, 1), PosTetaPendule-currentPendule.rotation.eulerAngles.z);
         }
     }
 }
