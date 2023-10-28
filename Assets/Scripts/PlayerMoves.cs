@@ -14,7 +14,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] ParticleSystem particles;
     [SerializeField] ParticleSystem dash_particles;
     bool isMoving = false;
-    bool isSprinting = false;
+    public bool isSprinting = false;
     Vector2 direction = Vector2.zero;
     [SerializeField] public EnergyBar energyBar;
     [SerializeField] public float energy;
