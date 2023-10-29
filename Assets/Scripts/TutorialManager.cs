@@ -43,7 +43,7 @@ public class TutorialManager: MonoBehaviour
             }
         }else if (textsIndex == 2)
         {
-            if(playerMovesScript.isSprinting == true)
+            if(playerMovesScript.GetIsSprinting())
             {
                 textsIndex++;
             }

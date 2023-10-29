@@ -90,11 +90,12 @@ public class Pendule : MonoBehaviour
         {
             if (Grabbing & OnPendule)
             {
+                print("grabbing");
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float vitX = playerMovesScript.GetVitesseX();
                 PosTetaPendule += VitTetaPendule * Time.fixedDeltaTime;
                 VitTetaPendule += AccTetaPendule * Time.fixedDeltaTime;
-                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX/20 / Time.fixedDeltaTime;
+                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX*Mathf.Cos(PosTetaPendule*Mathf.PI/180)/50 / Time.fixedDeltaTime;
                 transform.position = new Vector3(currentOriginPendule.x + Longueurpendule * Mathf.Sin(PosTetaPendule * Mathf.PI / 180), currentOriginPendule.y - Longueurpendule * Mathf.Cos(PosTetaPendule * Mathf.PI / 180), 0);
             }
             else

@@ -8,7 +8,7 @@ public class Jump : MonoBehaviour
 {
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float masse = 2;
-    [SerializeField] private float jumpSpeed = 10f;
+    [SerializeField] private float jumpSpeed = 8f;
     [SerializeField] private float timeOfJump = 0.5f;
     private float timer;
     private float time;
@@ -35,6 +35,7 @@ public class Jump : MonoBehaviour
             transform.position += Vector3.up * (vitesse * Time.fixedDeltaTime);
             vitesse += acceleration * Time.fixedDeltaTime;
             acceleration = -gravity;
+            print(transform.position);
         }
     }
 
@@ -123,7 +124,7 @@ public class Jump : MonoBehaviour
             }
         }
 
-        if (isFalling && !isOnGround)
+        if (isFalling && !isJumping && !isOnGround)
         {
             Falling();
         }

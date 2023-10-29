@@ -14,7 +14,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] ParticleSystem particles;
     [SerializeField] ParticleSystem dash_particles;
     bool isMoving = false;
-    public bool isSprinting = false;
+    bool isSprinting = false;
     Vector2 direction = Vector2.zero;
     [SerializeField] public EnergyBar energyBar;
     [SerializeField] public float energy;
@@ -31,6 +31,8 @@ public class PlayerMoves : MonoBehaviour
         StartCoroutine(RestoreEnergyCoroutine());
         particles.gameObject.SetActive(false);
         OnPenduleGrabb = false;
+        direction = Vector2.zero;
+        isMoving = false;
     }
 
     // Update is called once per frame
@@ -40,7 +42,6 @@ public class PlayerMoves : MonoBehaviour
         {
             player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
         }
-
         sprint(isSprinting);
     }
 
@@ -57,8 +58,11 @@ public class PlayerMoves : MonoBehaviour
         else
         {
             return 0;
-        }
-        
+        }   
+    }
+    public bool GetIsSprinting()
+    {
+        return isSprinting;
     }
 
     public void setOnPendule(bool Onpendule)

@@ -31,7 +31,7 @@ public class CollisionManager : MonoBehaviour
         position = Player.transform.position;
         float vitY = jumpScript.GetVitesseY();
         vitesse = new Vector3(0, vitY, 0);
-        PhantomPosition = position + vitesse;
+        PhantomPosition = position + vitesse*Time.fixedDeltaTime;
         transform.position = PhantomPosition;
     }
 
