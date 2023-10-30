@@ -25,24 +25,24 @@ public class TutorialManager: MonoBehaviour
         {
             if(playerMovesScript.GetVitesseX()!=0)
             {
+                texts[textsIndex].SetActive(false);
                 textsIndex++;
-                texts[textsIndex-1].SetActive(false);
                 texts[textsIndex].SetActive(true);
             }
         } else if (textsIndex == 1)
         {
             if(jumpScript.GetVitesseY()!=0)
             {
+                texts[textsIndex].SetActive(false);
                 textsIndex++;
-                texts[textsIndex - 1].SetActive(false);
                 texts[textsIndex].SetActive(true);
             }
         }else if (textsIndex == 2)
         {
             if(playerMovesScript.GetIsSprinting())
             {
+                texts[textsIndex].SetActive(false);
                 textsIndex++;
-                texts[textsIndex - 1].SetActive(false);
                 texts[textsIndex].SetActive(true);
             }
         }
