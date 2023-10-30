@@ -108,4 +108,9 @@ public class Pendule : MonoBehaviour
             currentPendule.Rotate(new Vector3(0, 0, 1), PosTetaPendule-currentPendule.rotation.eulerAngles.z);
         }
     }
+
+    public bool GetGrabbing()
+    {
+        return Grabbing;
+    }
 }

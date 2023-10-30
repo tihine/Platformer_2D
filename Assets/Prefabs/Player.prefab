@@ -5021,7 +5021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 9.81
   masse: 2
-  jumpSpeed: 10
+  jumpSpeed: 6
   timeOfJump: 0.5
   isFalling: 0
   nbPressedXButton: 2
