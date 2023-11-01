@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Elevator
   - Portal
+  - Plateforme
   layers:
   - Default
   - TransparentFX

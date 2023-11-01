@@ -60,10 +60,10 @@ public class TutorialManager: MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("collision"); 
-        if (other.CompareTag("Player")&& tutorialDone)
+        if (collision.gameObject.tag == "Player")
         {
             gestionnaireSceneScript.ChangeScene("Tutorial2");
         }
