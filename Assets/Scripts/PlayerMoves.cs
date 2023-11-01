@@ -15,6 +15,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] ParticleSystem dash_particles;
     bool isMoving = false;
     bool isSprinting = false;
+    bool isDashing = false;
     Vector2 direction = Vector2.zero;
     [SerializeField] public EnergyBar energyBar;
     [SerializeField] public float energy;
@@ -63,6 +64,10 @@ public class PlayerMoves : MonoBehaviour
     public bool GetIsSprinting()
     {
         return isSprinting;
+    }
+    public bool GetIsDashing()
+    {
+        return isDashing;
     }
 
     public void setOnPendule(bool Onpendule)
@@ -143,7 +148,13 @@ public class PlayerMoves : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             Debug.Log("dashing");
+            isDashing = true;
             dash();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            isDashing = false;
+
         }
     }
     public void dash()
