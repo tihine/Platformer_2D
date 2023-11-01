@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager2 : MonoBehaviour
 {
     public GameObject[] texts;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject Portal;
     [SerializeField] GameObject Elevator;
     private int textsIndex = 0;
     private PlayerMoves playerMovesScript;
     private Pendule penduleScript;
     private bool elevatorDone = false;
+    private bool tutorialDone = false;
 
     void Start()
     {
@@ -38,14 +41,19 @@ public class TutorialManager2 : MonoBehaviour
             if (penduleScript.GetGrabbing()==true)
             {
                 texts[textsIndex].SetActive(false);
+                tutorialDone = true;
+                Portal.SetActive(true);
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Elevator")){
+        if (collision.gameObject.tag=="Elevator"){
             elevatorDone = true;
+        } else if (collision.gameObject.tag == "Player" && tutorialDone == true)
+        {
+            SceneManager.LoadScene("Level 1");
         }
-        Debug.Log("bool=true");
     }
+
 }
