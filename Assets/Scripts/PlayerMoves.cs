@@ -64,7 +64,23 @@ public class PlayerMoves : MonoBehaviour
     {
         return isSprinting;
     }
-
+    
+    public void SetSpeed(float newSpeed)
+    {
+        new_speed = newSpeed;
+        Debug.Log("new Speed = " + new_speed);
+    }
+    
+    public float GetSpeed()
+    {
+        return new_speed;
+    }
+    
+    public float GetOriginalSpeed()
+    {
+        return speed;
+    }
+    
     public void setOnPendule(bool Onpendule)
     {
         OnPenduleGrabb= Onpendule;
