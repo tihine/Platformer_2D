@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager: MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class TutorialManager: MonoBehaviour
     private PlayerMoves playerMovesScript;
     private Jump jumpScript;
     private bool onPortal = false;
-    private GestionnaireScene gestionnaireSceneScript;
     private bool tutorialDone = false;
 
     void Start()
@@ -63,9 +63,9 @@ public class TutorialManager: MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("collision"); 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && tutorialDone==true)
         {
-            gestionnaireSceneScript.ChangeScene("Tutorial2");
+            SceneManager.LoadScene("Tutorial2");
         }
         
     }
