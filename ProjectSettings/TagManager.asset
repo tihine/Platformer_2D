@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Elevator
+  - Portal
+  - Plateforme
   layers:
   - Default
   - TransparentFX

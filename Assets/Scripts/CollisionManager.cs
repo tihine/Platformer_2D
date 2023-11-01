@@ -15,6 +15,7 @@ public class CollisionManager : MonoBehaviour
     Vector3 PhantomPosition;
     private Jump jumpScript;
     private Pendule penduleScript;
+    private PlayerMovement playerMovementScript;
     
     void Start()
     {
@@ -23,6 +24,7 @@ public class CollisionManager : MonoBehaviour
         transform.position = PhantomPosition;
         jumpScript = Player.GetComponent<Jump>();
         penduleScript = Player.GetComponent<Pendule>();
+        playerMovementScript = Player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class CollisionManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject != Player)
+        if (collision.gameObject != Player && collision.gameObject.tag == "Plateforme")
         {
             Plateform_type type = collision.gameObject.GetComponent<Plateform>().GetTypePlateform();
             float distancex_theory = collision.gameObject.GetComponent<Renderer>().bounds.size.x / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.x / 2;
@@ -185,7 +187,7 @@ public class CollisionManager : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject != Player)
+        if (collision.gameObject != Player && collision.gameObject.tag == "Plateforme")
         {
             jumpScript.OnFall();
             if (collision.gameObject.GetComponent<Plateform>().GetTypePlateform() == Plateform_type.liane)
