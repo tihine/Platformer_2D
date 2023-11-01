@@ -46,6 +46,18 @@ public class PlayerMoves : MonoBehaviour
         sprint(isSprinting);
     }
 
+    public void SetMoving(bool moving)
+    {
+        isMoving = moving;
+        if(moving)
+        {
+            new_speed = speed;
+        }
+        else
+        {
+            new_speed = 0;
+        }
+    }
     public float GetVitesseX()
     {
         if(direction.x < 0)

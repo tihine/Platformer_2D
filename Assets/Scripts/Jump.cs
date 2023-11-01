@@ -35,22 +35,28 @@ public class Jump : MonoBehaviour
             transform.position += Vector3.up * (vitesse * Time.fixedDeltaTime);
             vitesse += acceleration * Time.fixedDeltaTime;
             acceleration = -gravity;
-            print(transform.position);
         }
     }
 
     public void Plafond()
     {
         isJumping = false;
+        vitesse = 0;
+        acceleration = 0;
         isFalling = true;
     }
     public void OnGround()
     {
         isOnGround = true;
         isFalling = false;
+        vitesse = 0;
+        acceleration = 0;
         nbPressedXButton = 0;
     }
-
+    public void SetNbPressedXButton(int nbX)
+    {
+        nbPressedXButton = nbX;
+    }
     public void OnFall()
     {
         isOnGround = false;
@@ -67,6 +73,7 @@ public class Jump : MonoBehaviour
             nbPressedXButton += 1;
 
             //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
+            vitesse = vitesse + jumpSpeed;
             isJumping = true;
             isOnGround = false;
             isFalling= false;

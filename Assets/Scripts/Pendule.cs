@@ -90,7 +90,6 @@ public class Pendule : MonoBehaviour
         {
             if (Grabbing & OnPendule)
             {
-                print("grabbing");
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float vitX = playerMovesScript.GetVitesseX();
                 PosTetaPendule += VitTetaPendule * Time.fixedDeltaTime;
