@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    [SerializeField] private PlayerMoves playerMovesScript;
+
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float masse = 2;
     [SerializeField] private float jumpSpeed = 8f;
@@ -35,7 +37,7 @@ public class Jump : MonoBehaviour
             transform.position += Vector3.up * (vitesse * Time.fixedDeltaTime);
             vitesse += acceleration * Time.fixedDeltaTime;
             acceleration = -gravity;
-            print(transform.position);
+            //print(transform.position);
         }
     }
 
@@ -49,6 +51,9 @@ public class Jump : MonoBehaviour
         isOnGround = true;
         isFalling = false;
         nbPressedXButton = 0;
+        
+        float newSpeed = playerMovesScript.GetOriginalSpeed();
+        playerMovesScript.SetSpeed(newSpeed);
     }
 
     public void OnFall()
@@ -70,6 +75,9 @@ public class Jump : MonoBehaviour
             isJumping = true;
             isOnGround = false;
             isFalling= false;
+
+            float newSpeed = playerMovesScript.GetSpeed();
+            playerMovesScript.SetSpeed(newSpeed / 2);
         }
     }
     public float GetVitesseY()
@@ -102,6 +110,9 @@ public class Jump : MonoBehaviour
                 isJumping = true;
                 isOnGround = false;
                 isFalling= false;
+                
+                float newSpeed = playerMovesScript.GetSpeed();
+                playerMovesScript.SetSpeed(newSpeed / 2);
             }
         }
     }
