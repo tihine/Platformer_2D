@@ -45,8 +45,8 @@ public class CollisionManager : MonoBehaviour
             Plateform_type type = collision.gameObject.GetComponent<Plateform>().GetTypePlateform();
             float distancex_theory = collision.gameObject.GetComponent<Renderer>().bounds.size.x / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.x / 2;
             float distancey_theory = collision.gameObject.GetComponent<Renderer>().bounds.size.y / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2;
-            float plat_size_x = collision.gameObject.GetComponent<Renderer>().bounds.size.x + Player.gameObject.GetComponent<Renderer>().bounds.size.x;
-            float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y + Player.gameObject.GetComponent<Renderer>().bounds.size.y;
+            float plat_size_x = collision.gameObject.GetComponent<Renderer>().bounds.size.x + Player.gameObject.GetComponent<Renderer>().bounds.size.x/2;
+            float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y + Player.gameObject.GetComponent<Renderer>().bounds.size.y/2;
             float dist_x = collision.transform.position.x - transform.position.x;
             float dist_y = collision.transform.position.y - transform.position.y;
             print(type);
@@ -227,7 +227,16 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject != Player && collision.gameObject.tag == "Plateforme")
         {
-            jumpScript.OnFall();
+            float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2;
+            float dist_y = collision.transform.position.y - transform.position.y;
+            if(Mathf.Abs(dist_y) <= plat_size_y / 2)
+            {
+                print("nothing");
+            }
+            else
+            {
+                jumpScript.OnFall();
+            }
             if (collision.gameObject.GetComponent<Plateform>().GetTypePlateform() == Plateform_type.liane)
             {
                 print("exit pendule");

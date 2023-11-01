@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    [SerializeField] private PlayerMoves playerMovesScript;
+    private PlayerMoves playerMovesScript;
 
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float masse = 2;
@@ -28,6 +28,7 @@ public class Jump : MonoBehaviour
         isOnGround = false;
         isFalling = true;
         isJumping = false;
+        playerMovesScript = GetComponent<PlayerMoves>();
     }
 
     private void Falling()
@@ -46,6 +47,7 @@ public class Jump : MonoBehaviour
         vitesse = 0;
         acceleration = 0;
         isFalling = true;
+        nbPressedXButton = 2;
     }
     public void OnGround()
     {
