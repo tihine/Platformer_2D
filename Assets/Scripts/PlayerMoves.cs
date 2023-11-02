@@ -22,6 +22,8 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] float energy_loss_sprint;
     public bool malusEnergy = false;
     public bool OnPenduleGrabb;
+
+    private Vector3 startingPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class PlayerMoves : MonoBehaviour
         OnPenduleGrabb = false;
         direction = Vector2.zero;
         isMoving = false;
+        startingPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -44,6 +47,11 @@ public class PlayerMoves : MonoBehaviour
             player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
         }
         sprint(isSprinting);
+
+        if (transform.position.y < -8)
+        {
+            Die();
+        }
     }
 
     public void SetMoving(bool moving)
@@ -133,6 +141,13 @@ public class PlayerMoves : MonoBehaviour
     {
         return direction.x;
     }
+
+    public void Die()
+    {
+        startingPosition.y += 1;
+        transform.position = startingPosition;
+        startingPosition.y -= 1;
+    }
     
     #region sprint
     public void canSprint(InputAction.CallbackContext context)
@@ -140,7 +155,7 @@ public class PlayerMoves : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             isSprinting = true;
-            
+            SoundSingleton.Instance.PlaySprint();
         }
         if(context.phase == InputActionPhase.Canceled)
         {
@@ -178,6 +193,7 @@ public class PlayerMoves : MonoBehaviour
         {
             Debug.Log("dashing");
             isDashing = true;
+            SoundSingleton.Instance.PlayDash();
             dash();
         }
         if (context.phase == InputActionPhase.Canceled)

@@ -18,6 +18,7 @@ public class GestionnaireScene : MonoBehaviour
  public void CloseAdditiveScene(string sceneName)
  {
   SceneManager.UnloadSceneAsync(sceneName);
+  SoundSingleton.Instance.PlayClick();
  }
 
  public void Quit()

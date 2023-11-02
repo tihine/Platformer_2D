@@ -65,6 +65,7 @@ public class TutorialManager: MonoBehaviour
         Debug.Log("collision"); 
         if (collision.gameObject.tag == "Player" && tutorialDone==true)
         {
+            SoundSingleton.Instance.PlayWin();
             SceneManager.LoadScene("Tutorial2");
         }
         

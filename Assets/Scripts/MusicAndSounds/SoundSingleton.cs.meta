@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f482789144304524394e6a3ac95f1be3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SprintSound: {instanceID: 0}
+  - DashSound: {instanceID: 0}
+  - JumpSound: {instanceID: 0}
+  - ClickSound: {instanceID: 0}
+  - WinSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

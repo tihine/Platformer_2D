@@ -578,6 +578,18 @@ MonoBehaviour:
           m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 875276217}
+        m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &714273939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +705,7 @@ GameObject:
   - component: {fileID: 875276212}
   - component: {fileID: 875276213}
   - component: {fileID: 875276216}
+  - component: {fileID: 875276217}
   - component: {fileID: 875276215}
   - component: {fileID: 875276214}
   m_Layer: 0
@@ -936,8 +949,25 @@ MonoBehaviour:
   soundSource: {fileID: 875276215}
   musicSource: {fileID: 875276214}
   VolumeGeneral: 0.5
-  VolumeSons: 1
+  VolumeSons: 0.3
   VolumeMusiques: 1
+--- !u!114 &875276217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875276211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f482789144304524394e6a3ac95f1be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SprintSound: {fileID: 8300000, guid: 4b6f9a166bef05b42bf23514a4c70b04, type: 3}
+  DashSound: {fileID: 8300000, guid: 07f9e643b21de6b4f930650d826c3e7d, type: 3}
+  JumpSound: {fileID: 8300000, guid: 263361932b3507c4c839e171c90a9cd7, type: 3}
+  ClickSound: {fileID: 8300000, guid: 4770e887b844066479b458193d9b1d13, type: 3}
+  WinSound: {fileID: 8300000, guid: 17dde80cf2100ef4eba75097b4972804, type: 3}
 --- !u!1 &962920612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1129,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Options
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875276217}
+        m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1490351162
@@ -1574,7 +1616,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Manon
+          m_StringArgument: Tutorial
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875276217}
+        m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1707698469
@@ -1701,6 +1755,18 @@ MonoBehaviour:
       - m_Target: {fileID: 875276213}
         m_TargetAssemblyTypeName: GestionnaireScene, Assembly-CSharp
         m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875276217}
+        m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
