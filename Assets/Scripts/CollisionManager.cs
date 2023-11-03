@@ -223,13 +223,36 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject != Player && collision.gameObject.tag == "Plateforme")
+        {
+            Plateform_type type = collision.gameObject.GetComponent<Plateform>().GetTypePlateform();
+            if(type == Plateform_type.elevator)
+            {
+                float plat_size_x = collision.gameObject.GetComponent<Renderer>().bounds.size.x + Player.gameObject.GetComponent<Renderer>().bounds.size.x / 2;
+                float distancey_theory = collision.gameObject.GetComponent<Renderer>().bounds.size.y / 2 + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2;
+                float dist_x = collision.transform.position.x - transform.position.x;
+                float dist_y = collision.transform.position.y - transform.position.y;
+                if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
+                {
+                    print("par dessus stay !");
+                    jumpScript.OnGround();
+                    Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
+                    Player.transform.position = OnGroundPosition;
+                    transform.position = OnGroundPosition;
+                }
+            }
+        }
+    }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject != Player && collision.gameObject.tag == "Plateforme")
         {
             float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2;
             float dist_y = collision.transform.position.y - transform.position.y;
-            if(Mathf.Abs(dist_y) <= plat_size_y / 2)
+            float dist_x = collision.transform.position.x - transform.position.x;
+            if (Mathf.Abs(dist_y) <= plat_size_y / 2)
             {
                 print("nothing");
             }

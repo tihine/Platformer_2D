@@ -10,6 +10,7 @@ public enum Plateform_type
     bounce,
     pass, 
     liane,
+    elevator,
 }
 public class Plateform : MonoBehaviour
 {
