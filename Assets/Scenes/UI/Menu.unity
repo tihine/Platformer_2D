@@ -566,7 +566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 875276213}
+      - m_Target: {fileID: 1120841236}
         m_TargetAssemblyTypeName: GestionnaireScene, Assembly-CSharp
         m_MethodName: LoadAdditiveScene
         m_Mode: 5
@@ -703,13 +703,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875276212}
-  - component: {fileID: 875276213}
   - component: {fileID: 875276216}
   - component: {fileID: 875276217}
   - component: {fileID: 875276215}
   - component: {fileID: 875276214}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: ManagerSons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -730,18 +729,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &875276213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875276211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aaea31e14db1d54f867b2afc4714d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &875276214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1036,6 +1023,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1120841235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120841237}
+  - component: {fileID: 1120841236}
+  m_Layer: 0
+  m_Name: ManagerScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1120841236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120841235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aaea31e14db1d54f867b2afc4714d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1120841237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120841235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 415, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490351159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1150,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 875276213}
+      - m_Target: {fileID: 1120841236}
         m_TargetAssemblyTypeName: GestionnaireScene, Assembly-CSharp
         m_MethodName: LoadAdditiveScene
         m_Mode: 5
@@ -1607,7 +1638,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 875276213}
+      - m_Target: {fileID: 1120841236}
         m_TargetAssemblyTypeName: GestionnaireScene, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 5
@@ -1752,7 +1783,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 875276213}
+      - m_Target: {fileID: 1120841236}
         m_TargetAssemblyTypeName: GestionnaireScene, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -2060,3 +2091,4 @@ SceneRoots:
   - {fileID: 2011778257}
   - {fileID: 962920615}
   - {fileID: 875276212}
+  - {fileID: 1120841237}
