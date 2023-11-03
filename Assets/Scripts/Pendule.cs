@@ -33,6 +33,7 @@ public class Pendule : MonoBehaviour
 
     public void OnPenduleEnter()
     {
+        print("OnPendule !");
         OnPendule = true;
     }
     public void OnPenduleExit()

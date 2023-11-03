@@ -49,7 +49,6 @@ public class CollisionManager : MonoBehaviour
             float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y + Player.gameObject.GetComponent<Renderer>().bounds.size.y/2;
             float dist_x = collision.transform.position.x - transform.position.x;
             float dist_y = collision.transform.position.y - transform.position.y;
-            print(type);
             if (type == Plateform_type.normal)
             {
                 //Si collision par dessus
