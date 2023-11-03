@@ -89,7 +89,6 @@ public class PlayerMoves : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         new_speed = newSpeed;
-        Debug.Log("new Speed = " + new_speed);
     }
     
     public float GetSpeed()

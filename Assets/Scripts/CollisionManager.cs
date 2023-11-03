@@ -55,61 +55,16 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessus
                 if (Mathf.Abs(dist_x)<=plat_size_x/2 & dist_y<= 0)
                 {
-                    print("par dessus");
                     jumpScript.OnGround();
                     Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition;
                 }
                 //Si collision par dessous
-                else if (Mathf.Abs(dist_x) <= plat_size_x/2 & dist_y >= 0)
-                {
-                    print("par dessous");
-                    jumpScript.Plafond();
-                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
-                    Player.transform.position = UnderSealPosition;
-                    transform.position = UnderSealPosition;
-                }
-                //Si collision par la droite
-                else if (Mathf.Abs(dist_y) <= plat_size_y/2 & dist_x <= 0)
-                {
-                    //ne va plus vers la droite
-                    print("par la droite");
-                    playerMovesScript.SetMoving(false);
-                    Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
-                    Player.transform.position = OnRightPosition;
-                    transform.position = OnRightPosition;
-                }
-                //Si collision par la gauche
-                else if (Mathf.Abs(dist_y) <= plat_size_y/2 & dist_x >= 0)
-                {
-                    //ne va plus vers la gauche
-                    print("par la gauche");
-                    playerMovesScript.SetMoving(false);
-                    Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
-                    Player.transform.position = OnLeftPosition;
-                    transform.position = OnLeftPosition;
-                }
-
-            }
-
-            else if (type == Plateform_type.wall)
-            {
-                //Si collision par dessus
-                if (Mathf.Abs(dist_x) <= plat_size_x/2 & dist_y <= 0)
-                {
-                    print("par dessus");
-                    jumpScript.OnGround();
-                    Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + distancey_theory, 0);
-                    Player.transform.position = OnGroundPosition;
-                    transform.position = OnGroundPosition;
-                }
-                //Si collision par dessous
                 if (Mathf.Abs(dist_x) <= plat_size_x/2 & dist_y >= 0)
                 {
-                    print("par dessous");
                     jumpScript.Plafond();
-                    Vector3 UnderSealPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y - distancey_theory, 0);
+                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
                 }
@@ -117,9 +72,7 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_y) <= plat_size_y/2 & dist_x <= 0)
                 {
                     //ne va plus vers la droite
-                    print("par la droite");
                     playerMovesScript.SetMoving(false);
-                    jumpScript.SetNbPressedXButton(1);
                     Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnRightPosition;
                     transform.position = OnRightPosition;
@@ -128,32 +81,28 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_y) <= plat_size_y/2 & dist_x >= 0)
                 {
                     //ne va plus vers la gauche
-                    print("par la gauche");
                     playerMovesScript.SetMoving(false);
-                    jumpScript.SetNbPressedXButton(1);
                     Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnLeftPosition;
                     transform.position = OnLeftPosition;
                 }
+
             }
+
+
             else if (type == Plateform_type.bounce)
             {
                 //Si collision par dessus
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
                 {
-                    print("par dessus");
                     jumpScript.OnGround();
-                    //Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + distancey_theory, 0);
-                    //Player.transform.position = OnGroundPosition;
-                    //transform.position = OnGroundPosition;
                     jumpScript.JumpOnCode();
                 }
                 //Si collision par dessous
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
                 {
-                    print("par dessous");
                     jumpScript.Plafond();
-                    Vector3 UnderSealPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y - distancey_theory, 0);
+                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
                 }
@@ -161,7 +110,6 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_y) <= plat_size_y /2 & dist_x <= 0)
                 {
                     //ne va plus vers la droite
-                    print("par la droite");
                     playerMovesScript.SetMoving(false);
                     Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnRightPosition;
@@ -171,7 +119,6 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
                 {
                     //ne va plus vers la gauche
-                    print("par la gauche");
                     playerMovesScript.SetMoving(false);
                     Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnLeftPosition;
@@ -185,7 +132,7 @@ public class CollisionManager : MonoBehaviour
                 {
                     //print("par dessus");
                     jumpScript.OnGround();
-                    Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + distancey_theory, 0);
+                    Vector3 OnGroundPosition = new Vector3(Player.transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition;
                 }
@@ -212,7 +159,46 @@ public class CollisionManager : MonoBehaviour
                     Player.transform.position = OnLeftPosition;
                     transform.position = OnLeftPosition;
                 }
-            } 
+            }
+            else if (type == Plateform_type.wall)
+            {
+                //Si collision par dessus
+                if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
+                {
+                    jumpScript.OnGround();
+                    Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
+                    Player.transform.position = OnGroundPosition;
+                    transform.position = OnGroundPosition;
+                }
+                //Si collision par dessous
+                if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
+                {
+                    jumpScript.Plafond();
+                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
+                    Player.transform.position = UnderSealPosition;
+                    transform.position = UnderSealPosition;
+                }
+                //Si collision par la droite
+                if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
+                {
+                    //ne va plus vers la droite
+                    playerMovesScript.SetMoving(false);
+                    jumpScript.SetNbPressedXButton(1);
+                    Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
+                    Player.transform.position = OnRightPosition;
+                    transform.position = OnRightPosition;
+                }
+                //Si collision par la gauche
+                if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
+                {
+                    //ne va plus vers la gauche
+                    playerMovesScript.SetMoving(false);
+                    jumpScript.SetNbPressedXButton(1);
+                    Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
+                    Player.transform.position = OnLeftPosition;
+                    transform.position = OnLeftPosition;
+                }
+            }
             else if (type == Plateform_type.liane)
             {
                 print("Sur la liane");
@@ -238,7 +224,6 @@ public class CollisionManager : MonoBehaviour
             {
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
                 {
-                    print("par dessus stay !");
                     jumpScript.OnGround();
                     Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
@@ -250,36 +235,24 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessus
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
                 {
-                    print("par dessus");
                     jumpScript.OnGround();
                     Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition;
                 }
-                //Si collision par dessous
-                else if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
-                {
-                    print("par dessous");
-                    jumpScript.Plafond();
-                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
-                    Player.transform.position = UnderSealPosition;
-                    transform.position = UnderSealPosition;
-                }
                 //Si collision par la droite
-                else if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
+                if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
                 {
                     //ne va plus vers la droite
-                    print("par la droite");
                     playerMovesScript.SetMoving(false);
                     Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnRightPosition;
                     transform.position = OnRightPosition;
                 }
                 //Si collision par la gauche
-                else if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
+                if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
                 {
                     //ne va plus vers la gauche
-                    print("par la gauche");
                     playerMovesScript.SetMoving(false);
                     Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnLeftPosition;
@@ -293,42 +266,30 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessus
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
                 {
-                    print("par dessus");
                     jumpScript.OnGround();
-                    Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + distancey_theory, 0);
+                    Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition;
-                }
-                //Si collision par dessous
-                if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
-                {
-                    print("par dessous");
-                    jumpScript.Plafond();
-                    Vector3 UnderSealPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y - distancey_theory, 0);
-                    Player.transform.position = UnderSealPosition;
-                    transform.position = UnderSealPosition;
                 }
                 //Si collision par la droite
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
                 {
-                    //ne va plus vers la droite
-                    print("par la droite");
-                    playerMovesScript.SetMoving(false);
-                    jumpScript.SetNbPressedXButton(1);
                     Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
-                    Player.transform.position = OnRightPosition;
-                    transform.position = OnRightPosition;
+                    if (transform.position.x < OnRightPosition.x)
+                    {
+                        transform.position = OnRightPosition;
+                        Player.transform.position = OnRightPosition;
+                    }
                 }
                 //Si collision par la gauche
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
                 {
-                    //ne va plus vers la gauche
-                    print("par la gauche");
-                    playerMovesScript.SetMoving(false);
-                    jumpScript.SetNbPressedXButton(1);
                     Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
-                    Player.transform.position = OnLeftPosition;
-                    transform.position = OnLeftPosition;
+                    if(transform.position.x > OnLeftPosition.x)
+                    {
+                        transform.position = OnLeftPosition;
+                        Player.transform.position = OnLeftPosition;
+                    }
                 }
             }
             else if (type == Plateform_type.bounce)
@@ -336,19 +297,14 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessus
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
                 {
-                    print("par dessus");
                     jumpScript.OnGround();
-                    //Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + distancey_theory, 0);
-                    //Player.transform.position = OnGroundPosition;
-                    //transform.position = OnGroundPosition;
                     jumpScript.JumpOnCode();
                 }
                 //Si collision par dessous
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
                 {
-                    print("par dessous");
-                    jumpScript.Plafond();
-                    Vector3 UnderSealPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y - distancey_theory, 0);
+                    jumpScript.Plafond();   
+                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
                 }
@@ -356,7 +312,6 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
                 {
                     //ne va plus vers la droite
-                    print("par la droite");
                     playerMovesScript.SetMoving(false);
                     Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnRightPosition;
@@ -366,7 +321,6 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
                 {
                     //ne va plus vers la gauche
-                    print("par la gauche");
                     playerMovesScript.SetMoving(false);
                     Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
                     Player.transform.position = OnLeftPosition;
@@ -380,7 +334,7 @@ public class CollisionManager : MonoBehaviour
                 {
                     //print("par dessus");
                     jumpScript.OnGround();
-                    Vector3 OnGroundPosition = new Vector3(PhantomPosition.x, collision.gameObject.transform.position.y + distancey_theory, 0);
+                    Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition; 
                 }
@@ -414,21 +368,14 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject != Player && collision.gameObject.tag == "Plateforme")
         {
-            float plat_size_y = collision.gameObject.GetComponent<Renderer>().bounds.size.y + Player.gameObject.GetComponent<Renderer>().bounds.size.y / 2;
-            float dist_y = collision.transform.position.y - transform.position.y;
-            float dist_x = collision.transform.position.x - transform.position.x;
-            if (Mathf.Abs(dist_y) <= plat_size_y / 2)
-            {
-                print("nothing");
-            }
-            else
-            {
-                jumpScript.OnFall();
-            }
             if (collision.gameObject.GetComponent<Plateform>().GetTypePlateform() == Plateform_type.liane)
             {
                 print("exit pendule");
                 penduleScript.OnPenduleExit();
+            }
+            else
+            {
+                jumpScript.OnFall();
             }
         }
     }
