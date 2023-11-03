@@ -300,14 +300,6 @@ public class CollisionManager : MonoBehaviour
                     jumpScript.OnGround();
                     jumpScript.JumpOnCode();
                 }
-                //Si collision par dessous
-                if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
-                {
-                    jumpScript.Plafond();   
-                    Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
-                    Player.transform.position = UnderSealPosition;
-                    transform.position = UnderSealPosition;
-                }
                 //Si collision par la droite
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
                 {
@@ -337,11 +329,6 @@ public class CollisionManager : MonoBehaviour
                     Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition; 
-                }
-                //Si collision par dessous
-                if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y >= 0)
-                {
-                    //ignore laisse passer 
                 }
                 //Si collision par la droite
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
