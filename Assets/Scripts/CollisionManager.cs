@@ -26,6 +26,18 @@ public class CollisionManager : MonoBehaviour
         penduleScript = Player.GetComponent<Pendule>();
         playerMovesScript = Player.GetComponent<PlayerMoves>();
     }
+    
+    private IEnumerator DieCoroutine(float secondsBeforeRespawn)
+    {
+        var startPos = playerMovesScript.startingPosition;
+        //TODO : play death particules
+        playerMovesScript.death_particules.Play();
+        var player = playerMovesScript.gameObject;
+        player.SetActive(false);
+        yield return new WaitForSeconds(secondsBeforeRespawn);
+        player.transform.position = playerMovesScript.startingPosition;
+        player.SetActive(true);
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -203,6 +215,11 @@ public class CollisionManager : MonoBehaviour
                 print("Sur la liane");
                 penduleScript.OnPenduleEnter();
                 penduleScript.SetCurrentPendule(collision.gameObject);
+            }
+            
+            else if (type == Plateform_type.killer)
+            {
+                StartCoroutine(DieCoroutine(1f));
             }
 
         }

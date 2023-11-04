@@ -13,6 +13,7 @@ public class PlayerMoves : MonoBehaviour
     Transform player_transform;
     [SerializeField] ParticleSystem particles;
     [SerializeField] ParticleSystem dash_particles;
+    [SerializeField] public ParticleSystem death_particules;
     bool isMoving = false;
     bool isSprinting = false;
     bool isDashing = false;
@@ -20,10 +21,12 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] public EnergyBar energyBar;
     [SerializeField] public float energy;
     [SerializeField] float energy_loss_sprint;
+    [SerializeField] private float distanceBeforeDeath = -8;
     public bool malusEnergy = false;
     public bool OnPenduleGrabb;
 
-    private Vector3 startingPosition;
+    public Vector3 startingPosition;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +51,7 @@ public class PlayerMoves : MonoBehaviour
         }
         sprint(isSprinting);
 
-        if (transform.position.y < -8)
+        if (transform.position.y < distanceBeforeDeath)
         {
             Die();
         }
@@ -143,11 +146,16 @@ public class PlayerMoves : MonoBehaviour
 
     public void Die()
     {
-        startingPosition.y += 1;
-        transform.position = startingPosition;
-        startingPosition.y -= 1;
+        StartCoroutine(DieCoroutine(0.5f));
     }
-    
+
+    private IEnumerator DieCoroutine(float secondsBeforeRespawn)
+    {
+        //TODO : play death particules
+        yield return new WaitForSeconds(secondsBeforeRespawn);
+        transform.position = startingPosition;
+    }
+
     #region sprint
     public void canSprint(InputAction.CallbackContext context)
     {
