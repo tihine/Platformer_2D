@@ -17,9 +17,15 @@ public class Plateform : MonoBehaviour
     [SerializeField]
     Plateform_type type;
 
+    [SerializeField]
+    float tetamax;
     public Plateform_type GetTypePlateform()
     {
         return type;
+    }
+    public float GetTetaMax()
+    {
+        return tetamax;
     }
 }
 
