@@ -20,7 +20,7 @@ public class Jump : MonoBehaviour
     private bool isOnGround = true;
     private float vitesse;
     private float acceleration;
-    
+    private float coefFrottementWall = 1f;
     public int nbPressedXButton;
     void Start()
     {
@@ -37,10 +37,14 @@ public class Jump : MonoBehaviour
         {
             transform.position += Vector3.up * (vitesse * Time.fixedDeltaTime);
             vitesse += acceleration * Time.fixedDeltaTime;
-            acceleration = -gravity;
+            acceleration = -gravity *coefFrottementWall;
         }
     }
 
+    public void setCoeffWall(float coef)
+    {
+        coefFrottementWall = coef;
+    }
     public void Plafond()
     {
         isJumping = false;

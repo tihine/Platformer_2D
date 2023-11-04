@@ -273,6 +273,8 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par la droite
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
                 {
+                    jumpScript.setCoeffWall(0.05f);
+                    print("slide");
                     Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
                     if (transform.position.x < OnRightPosition.x)
                     {
@@ -283,6 +285,8 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par la gauche
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0)
                 {
+                    jumpScript.setCoeffWall(0.05f);
+                    print("slide");
                     Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
                     if(transform.position.x > OnLeftPosition.x)
                     {
@@ -356,8 +360,11 @@ public class CollisionManager : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Plateform>().GetTypePlateform() == Plateform_type.liane)
             {
-                print("exit pendule");
                 penduleScript.OnPenduleExit();
+            }
+            if (collision.gameObject.GetComponent<Plateform>().GetTypePlateform() == Plateform_type.wall)
+            {
+                jumpScript.setCoeffWall(1f);
             }
             else
             {
