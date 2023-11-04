@@ -11,10 +11,10 @@ public class TutorialManager2 : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Portal;
     [SerializeField] GameObject Elevator;
+    [SerializeField] ElevatorTuto2 elevatorTuto2Script;
     private int textsIndex = 0;
     private PlayerMoves playerMovesScript;
     private Pendule penduleScript;
-    private bool elevatorDone = false;
     private bool tutorialDone = false;
 
     void Start()
@@ -28,7 +28,7 @@ public class TutorialManager2 : MonoBehaviour
 
         if (textsIndex == 0)
         {
-            if(elevatorDone==true)
+            if(elevatorTuto2Script.contactElevator == true)
             {
                 Debug.Log("test true");
                 texts[textsIndex].SetActive(false);
@@ -48,9 +48,7 @@ public class TutorialManager2 : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag=="Elevator"){
-            elevatorDone = true;
-        } else if (collision.gameObject.tag == "Player" && tutorialDone == true)
+        if (collision.gameObject.tag == "Player" && tutorialDone == true)
         {
             SceneManager.LoadScene("Level 1");
         }
