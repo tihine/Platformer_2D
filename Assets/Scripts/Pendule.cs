@@ -58,9 +58,9 @@ public class Pendule : MonoBehaviour
     }
     public void OnGrabbEnter()
     { 
-        Grabbing = true;
         if (OnPendule)
         {
+            Grabbing = true;
             jumpScript.OnGround();
             Longueurpendule = (currentOriginPendule - transform.position).magnitude / 5;
             playerMovesScript.setOnPendule(Grabbing);
@@ -68,12 +68,13 @@ public class Pendule : MonoBehaviour
     }
     public void OnGrabbExit()
     {
+
         Grabbing = false;
         if (OnPendule)
         {
             jumpScript.OnFall();
-            playerMovesScript.setOnPendule(Grabbing);
         }
+        playerMovesScript.setOnPendule(Grabbing);
     }
     public void SetCurrentPendule(GameObject pendule)
     {
@@ -128,7 +129,6 @@ public class Pendule : MonoBehaviour
     {
         if (currentPendule)
         {
-            print("current pendule : " + currentPendule.name);
             if (Grabbing & OnPendule)
             {
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;

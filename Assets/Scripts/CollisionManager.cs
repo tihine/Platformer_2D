@@ -265,7 +265,6 @@ public class CollisionManager : MonoBehaviour
             }
             else if (type == Plateform_type.liane)
             {
-                print("collision liane");
                 penduleScript.OnPenduleEnter();
                 penduleScript.SetCurrentPendule(collision.gameObject);
             }
@@ -398,7 +397,6 @@ public class CollisionManager : MonoBehaviour
                 Vector3 vertical = new Vector3(-Mathf.Sin(teta * Mathf.PI / 180), Mathf.Cos(teta * Mathf.PI / 180), 0);
                 dist_x = Vector3.Dot(distVec, horizontal);
                 dist_y = Vector3.Dot(distVec, vertical);
-                print("player pos init : " + Player.gameObject.transform.position);
 
                 //Si collision par dessus
                 if (Mathf.Abs(dist_x) <= plat_size_x & dist_y >= 0)
@@ -407,7 +405,6 @@ public class CollisionManager : MonoBehaviour
                     Vector3 OnGroundPosition = collision.transform.position + dist_x * horizontal + distancey_theory * vertical;
                     Player.transform.position = OnGroundPosition;
                     transform.position = OnGroundPosition;
-                    print("after : " + OnGroundPosition);
                 }
                 //Si collision par dessous
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y <= 0)
