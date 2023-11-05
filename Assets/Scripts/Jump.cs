@@ -45,12 +45,12 @@ public class Jump : MonoBehaviour
     {
         coefFrottementWall = coef;
     }
-    public void Plafond()
+    public void Plafond(bool pendule)
     {
         isJumping = false;
         vitesse = 0;
         acceleration = 0;
-        isFalling = true;
+        isFalling = !pendule;
         nbPressedXButton = 2;
     }
     public void OnGround()

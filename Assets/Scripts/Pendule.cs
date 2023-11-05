@@ -46,7 +46,10 @@ public class Pendule : MonoBehaviour
         canBalance = 1;
         currentPendule = null;  
     }
-
+    public bool getOnPendule()
+    {
+        return OnPendule & Grabbing;
+    }
     public void OnPenduleEnter()
     {
         OnPendule = true;
@@ -64,6 +67,7 @@ public class Pendule : MonoBehaviour
             jumpScript.OnGround();
             Longueurpendule = (currentOriginPendule - transform.position).magnitude / 5;
             playerMovesScript.setOnPendule(Grabbing);
+            
         }
     }
     public void OnGrabbExit()
@@ -131,6 +135,7 @@ public class Pendule : MonoBehaviour
         {
             if (Grabbing & OnPendule)
             {
+                jumpScript.OnGround();
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float climb = directionClimb * speedClimb * Time.fixedDeltaTime;
                 if (climbing & climb < Longueurpendule & Longueurpendule - climb < longueurmax)

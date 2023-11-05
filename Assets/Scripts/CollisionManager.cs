@@ -18,6 +18,7 @@ public class CollisionManager : MonoBehaviour
     private PlayerMoves playerMovesScript;
     private bool onPente;
     private bool passUnder;
+    private bool onPendule;
     void Start()
     {
         position = transform.position;
@@ -28,6 +29,7 @@ public class CollisionManager : MonoBehaviour
         playerMovesScript = Player.GetComponent<PlayerMoves>();
         onPente = false;
         passUnder = false;
+        onPendule = false;  
     }
     
     private IEnumerator DieCoroutine(float secondsBeforeRespawn)
@@ -51,6 +53,7 @@ public class CollisionManager : MonoBehaviour
         vitesse = new Vector3(vitX, vitY, 0);
         PhantomPosition = position + vitesse*Time.fixedDeltaTime;
         transform.position = PhantomPosition;
+        onPendule = penduleScript.getOnPendule();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -77,7 +80,7 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessous
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y >= 0)
                 {
-                    jumpScript.Plafond();
+                    jumpScript.Plafond(onPendule);
                     Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
@@ -115,7 +118,7 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessous
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y >= 0)
                 {
-                    jumpScript.Plafond();
+                    jumpScript.Plafond(onPendule);
                     Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
@@ -188,7 +191,7 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessous
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y >= 0)
                 {
-                    jumpScript.Plafond();
+                    jumpScript.Plafond(onPendule);
                     Vector3 UnderSealPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y - distancey_theory, 0);
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
@@ -236,7 +239,7 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessous
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y <= 0)
                 {
-                    jumpScript.Plafond();
+                    jumpScript.Plafond(onPendule);
                     Vector3 UnderSealPosition = collision.transform.position + dist_x * horizontal - distancey_theory * vertical;
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
@@ -409,7 +412,7 @@ public class CollisionManager : MonoBehaviour
                 //Si collision par dessous
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y <= 0)
                 {
-                    jumpScript.Plafond();
+                    jumpScript.Plafond(onPendule);
                     Vector3 UnderSealPosition = collision.transform.position + dist_x * horizontal - distancey_theory * vertical;
                     Player.transform.position = UnderSealPosition;
                     transform.position = UnderSealPosition;
@@ -486,7 +489,7 @@ public class CollisionManager : MonoBehaviour
             {
                 jumpScript.setCoeffWall(1f);
             }
-            if (!onPente)
+            if (!onPente || !onPendule)
             {
                 jumpScript.OnFall();
             }
