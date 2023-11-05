@@ -265,6 +265,7 @@ public class CollisionManager : MonoBehaviour
             }
             else if (type == Plateform_type.liane)
             {
+                print("collision liane");
                 penduleScript.OnPenduleEnter();
                 penduleScript.SetCurrentPendule(collision.gameObject);
             }
@@ -488,7 +489,7 @@ public class CollisionManager : MonoBehaviour
             {
                 jumpScript.setCoeffWall(1f);
             }
-            else if (!onPente)
+            if (!onPente)
             {
                 jumpScript.OnFall();
             }

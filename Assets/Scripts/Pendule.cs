@@ -44,6 +44,7 @@ public class Pendule : MonoBehaviour
         directionBalance = 0f;
         longueurmax = 1f;
         canBalance = 1;
+        currentPendule = null;  
     }
 
     public void OnPenduleEnter()
@@ -53,9 +54,10 @@ public class Pendule : MonoBehaviour
     public void OnPenduleExit()
     {
         OnPendule = false;
+        currentPendule = null;
     }
     public void OnGrabbEnter()
-    {
+    { 
         Grabbing = true;
         if (OnPendule)
         {
@@ -81,7 +83,7 @@ public class Pendule : MonoBehaviour
             AccTetaPendule = 0f;
         }
         currentPendule = pendule.transform.parent;
-        longueurmax = pendule.transform.GetComponent<Renderer>().bounds.size.y;
+        longueurmax = pendule.transform.localScale.y;
         Longueurpendule = 1f;
         PosTetaPendule = currentPendule.transform.rotation.eulerAngles.z;
         currentOriginPendule = currentPendule.transform.position;
@@ -126,27 +128,26 @@ public class Pendule : MonoBehaviour
     {
         if (currentPendule)
         {
+            print("current pendule : " + currentPendule.name);
             if (Grabbing & OnPendule)
             {
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float climb = directionClimb * speedClimb * Time.fixedDeltaTime;
-                print("climbing : " + climbing);
-                if (climbing & climb<Longueurpendule & Longueurpendule-climb < longueurmax)
+                if (climbing & climb < Longueurpendule & Longueurpendule - climb < longueurmax)
                 {
-                    print("climb");
                     Longueurpendule -= climb;
                 }
                 float vitX = playerMovesScript.GetVitesseX();
                 PosTetaPendule += VitTetaPendule * Time.fixedDeltaTime;
                 VitTetaPendule += AccTetaPendule * Time.fixedDeltaTime;
-                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX*Mathf.Cos(PosTetaPendule*Mathf.PI/180)/50*Time.fixedDeltaTime * canBalance;
+                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX * Mathf.Cos(PosTetaPendule * Mathf.PI / 180) / 50 * Time.fixedDeltaTime * canBalance;
                 transform.position = new Vector3(currentOriginPendule.x + Longueurpendule * Mathf.Sin(PosTetaPendule * Mathf.PI / 180), currentOriginPendule.y - Longueurpendule * Mathf.Cos(PosTetaPendule * Mathf.PI / 180), 0);
                 if (Mathf.Abs(PosTetaPendule) > currenttetamax & canBalance == 1)
                 {
                     VitTetaPendule = 0;
                     canBalance = 0;
                 }
-                else if(Mathf.Abs(PosTetaPendule) > currenttetamax)
+                else if (Mathf.Abs(PosTetaPendule) > currenttetamax)
                 {
                     canBalance = 0;
                 }
