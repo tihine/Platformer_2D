@@ -32,9 +32,9 @@ public class UI_Manager : MonoBehaviour
         canvasPause.SetActive(isPaused);
     }
 
-    private void Update()
+    public void pauseGame(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (context.phase == InputActionPhase.Started)
         {
             PauseManager(!canvasPause.activeSelf);
         }
