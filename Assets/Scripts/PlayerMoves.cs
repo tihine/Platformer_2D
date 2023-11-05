@@ -200,7 +200,6 @@ public class PlayerMoves : MonoBehaviour
         {
             Debug.Log("dashing");
             isDashing = true;
-            SoundSingleton.Instance.PlayDash();
             dash();
         }
         if (context.phase == InputActionPhase.Canceled)
@@ -211,23 +210,27 @@ public class PlayerMoves : MonoBehaviour
     }
     public void dash()
     {
-        float dash_duration = 0f;
-        new_speed = speed * dash_factor;
-        dash_particles.Play();
-        while (dash_duration < dash_timer)
+        if (energy > 8f)
         {
-            Debug.Log(dash_duration);
-            player_transform.Translate(direction * Time.fixedDeltaTime * new_speed);
-            dash_duration += Time.fixedDeltaTime;
+            SoundSingleton.Instance.PlayDash();
+            float dash_duration = 0f;
+            new_speed = speed * dash_factor;
+            dash_particles.Play();
+            while (dash_duration < dash_timer)
+            {
+                Debug.Log(dash_duration);
+                player_transform.Translate(direction * Time.fixedDeltaTime * new_speed);
+                dash_duration += Time.fixedDeltaTime;
+            }
+            energy -= 8f;
+            energyBar.SetEnergy(energy);
+            if (energy <= 0)
+            {
+                malusEnergy = true;
+            }
+            new_speed = speed;
+            dash_duration = 0f;
         }
-        energy -= 8f;
-        energyBar.SetEnergy(energy);
-        if (energy <= 0)
-        {
-            malusEnergy = true;
-        }
-        new_speed = speed;
-        dash_duration = 0f;
     }
     #endregion dash
 
