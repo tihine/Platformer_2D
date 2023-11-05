@@ -17,6 +17,7 @@ public class CollisionManager : MonoBehaviour
     private Pendule penduleScript;
     private PlayerMoves playerMovesScript;
     private bool onPente;
+    private bool passUnder;
     void Start()
     {
         position = transform.position;
@@ -26,6 +27,7 @@ public class CollisionManager : MonoBehaviour
         penduleScript = Player.GetComponent<Pendule>();
         playerMovesScript = Player.GetComponent<PlayerMoves>();
         onPente = false;
+        passUnder = false;
     }
     
     private IEnumerator DieCoroutine(float secondsBeforeRespawn)
@@ -152,6 +154,7 @@ public class CollisionManager : MonoBehaviour
                 else if (Mathf.Abs(dist_x) <= plat_size_x & dist_y >= 0)
                 {
                     //ignore laisse passer 
+                    passUnder = true;
                 }
                 //Si collision par la droite
                 else if (Mathf.Abs(dist_y) <= plat_size_y & dist_x <= 0)
@@ -438,28 +441,37 @@ public class CollisionManager : MonoBehaviour
                 if (Mathf.Abs(dist_x) <= plat_size_x / 2 & dist_y <= 0)
                 {
                     //print("par dessus");
-                    jumpScript.OnGround();
-                    Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
-                    Player.transform.position = OnGroundPosition;
-                    transform.position = OnGroundPosition; 
+                    if (!passUnder)
+                    {
+                        jumpScript.OnGround();
+                        Vector3 OnGroundPosition = new Vector3(transform.position.x, collision.gameObject.transform.position.y + distancey_theory, 0);
+                        Player.transform.position = OnGroundPosition;
+                        transform.position = OnGroundPosition;
+                    }
                 }
                 //Si collision par la droite
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x <= 0)
                 {
                     //ne va plus vers la droite
-                    playerMovesScript.SetMoving(false);
-                    Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
-                    Player.transform.position = OnRightPosition;
-                    transform.position = OnRightPosition;
+                    if (!passUnder)
+                    {
+                        playerMovesScript.SetMoving(false);
+                        Vector3 OnRightPosition = new Vector3(collision.gameObject.transform.position.x + distancex_theory, transform.position.y, 0);
+                        Player.transform.position = OnRightPosition;
+                        transform.position = OnRightPosition;
+                    }
                 }
                 //Si collision par la gauche
                 if (Mathf.Abs(dist_y) <= plat_size_y / 2 & dist_x >= 0 & Mathf.Abs(dist_x) >= plat_size_x / 2)
                 {
-                    //ne va plus vers la gauche
-                    playerMovesScript.SetMoving(false);
-                    Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
-                    Player.transform.position = OnLeftPosition;
-                    transform.position = OnLeftPosition;
+                    if (!passUnder)
+                    {
+                        //ne va plus vers la gauche
+                        playerMovesScript.SetMoving(false);
+                        Vector3 OnLeftPosition = new Vector3(collision.gameObject.transform.position.x - distancex_theory, transform.position.y, 0);
+                        Player.transform.position = OnLeftPosition;
+                        transform.position = OnLeftPosition;
+                    }
                 }
             }
         }
@@ -484,6 +496,10 @@ public class CollisionManager : MonoBehaviour
             {
                 Player.gameObject.transform.rotation = Quaternion.identity;
                 onPente = false;
+            }
+            if (collision.gameObject.GetComponent<Plateform>().GetTypePlateform() == Plateform_type.pass)
+            {
+                passUnder = false;
             }
         }
     }
