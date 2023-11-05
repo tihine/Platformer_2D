@@ -130,6 +130,7 @@ public class Pendule : MonoBehaviour
                 float climb = directionClimb * speedClimb * Time.fixedDeltaTime;
                 if (climbing & climb<Longueurpendule & Longueurpendule-climb < longueurmax)
                 {
+                    print("climb");
                     Longueurpendule -= climb;
                 }
                 float vitX = playerMovesScript.GetVitesseX();
