@@ -4798,6 +4798,10 @@ PrefabInstance:
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 645937366}
+    - target: {fileID: 9149866158565779237, guid: 80f48654505225a41955f8a07200e4d0, type: 3}
+      propertyPath: distanceBeforeDeath
+      value: -30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
