@@ -61,8 +61,8 @@ public class Jump : MonoBehaviour
         acceleration = 0;
         nbPressedXButton = 0;
         
-        float newSpeed = playerMovesScript.GetOriginalSpeed();
-        playerMovesScript.SetSpeed(newSpeed);
+        //float newSpeed = playerMovesScript.GetSpeed();
+        //playerMovesScript.SetSpeed(newSpeed);
     }
     public void SetNbPressedXButton(int nbX)
     {
@@ -89,8 +89,8 @@ public class Jump : MonoBehaviour
             isOnGround = false;
             isFalling= false;
 
-            float newSpeed = playerMovesScript.GetSpeed();
-            playerMovesScript.SetSpeed(newSpeed / 2);
+            //float newSpeed = playerMovesScript.GetSpeed();
+            //playerMovesScript.SetSpeed(newSpeed / 2);
         }
     }
     public float GetVitesseY()
@@ -124,8 +124,8 @@ public class Jump : MonoBehaviour
                 isOnGround = false;
                 isFalling= false;
                 
-                float newSpeed = playerMovesScript.GetSpeed();
-                playerMovesScript.SetSpeed(newSpeed / 2);
+                //float newSpeed = playerMovesScript.GetSpeed();
+                //playerMovesScript.SetSpeed(newSpeed / 2);
             }
         }
     }
