@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 347643004}
   - component: {fileID: 347643003}
   - component: {fileID: 347643002}
+  - component: {fileID: 347643005}
   m_Layer: 5
   m_Name: ButtonBack
   m_TagString: Untagged
@@ -436,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -517,6 +518,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347643000}
   m_CullTransparentMesh: 1
+--- !u!114 &347643005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347643000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98753a4fc40713c4faa9ebaf5d8e88e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &644577153
 GameObject:
   m_ObjectHideFlags: 0
