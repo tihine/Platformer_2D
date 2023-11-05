@@ -12,6 +12,7 @@ public enum Plateform_type
     liane,
     elevator,
     killer,
+    pente,
 }
 public class Plateform : MonoBehaviour
 {
