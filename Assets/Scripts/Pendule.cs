@@ -110,11 +110,13 @@ public class Pendule : MonoBehaviour
             directionBalance = direction.x;
             if(Grabbing & OnPendule)
             {
+                climbing = true;
                 VitTetaPendule += Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * directionBalance * speedBalance;
             }
         }
         if(context.phase == InputActionPhase.Canceled)
         {
+            climbing = false;
             directionClimb = 0;
             directionBalance = 0;
         }
@@ -128,6 +130,7 @@ public class Pendule : MonoBehaviour
             {
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float climb = directionClimb * speedClimb * Time.fixedDeltaTime;
+                print("climbing : " + climbing);
                 if (climbing & climb<Longueurpendule & Longueurpendule-climb < longueurmax)
                 {
                     print("climb");
