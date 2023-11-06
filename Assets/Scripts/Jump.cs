@@ -83,6 +83,8 @@ public class Jump : MonoBehaviour
 
             nbPressedXButton += 1;
 
+            SoundSingleton.Instance.PlayJump();
+
             //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
             vitesse = vitesse + jumpSpeed;
             isJumping = true;
@@ -113,6 +115,10 @@ public class Jump : MonoBehaviour
         {
             if ((isOnGround || nbPressedXButton < 2))
             {
+                if (nbPressedXButton == 0)
+                {
+                    SoundSingleton.Instance.PlayJump();
+                }
                 timer = Time.time + timeOfJump;
                 time = Time.time;
 

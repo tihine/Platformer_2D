@@ -34,6 +34,8 @@ public class CollisionManager : MonoBehaviour
     
     private IEnumerator DieCoroutine(float secondsBeforeRespawn)
     {
+        SoundSingleton.Instance.PlayDie();
+
         var startPos = playerMovesScript.startingPosition;
         //TODO : play death particules
         playerMovesScript.death_particules.Play();
@@ -63,8 +65,8 @@ public class CollisionManager : MonoBehaviour
             Plateform_type type = collision.gameObject.GetComponent<Plateform>().GetTypePlateform();
             float distancex_theory = collision.gameObject.transform.localScale.x / 2 + Player.gameObject.transform.localScale.x / 2;
             float distancey_theory = collision.gameObject.transform.localScale.y / 2 + Player.gameObject.transform.localScale.y / 2;
-            float plat_size_x = collision.gameObject.transform.localScale.x/2 + Player.gameObject.transform.localScale.x/4;//seuil de tolérance pour le divisé par 4
-            float plat_size_y = collision.gameObject.transform.localScale.y/2 + Player.gameObject.transform.localScale.y/4;//seuil de tolérance pour le divisé par 4
+            float plat_size_x = collision.gameObject.transform.localScale.x/2 + Player.gameObject.transform.localScale.x/4;//seuil de tolï¿½rance pour le divisï¿½ par 4
+            float plat_size_y = collision.gameObject.transform.localScale.y/2 + Player.gameObject.transform.localScale.y/4;//seuil de tolï¿½rance pour le divisï¿½ par 4
             float dist_x = collision.transform.position.x - transform.position.x;
             float dist_y = collision.transform.position.y - transform.position.y;
             if (type == Plateform_type.normal)
@@ -109,6 +111,8 @@ public class CollisionManager : MonoBehaviour
 
             else if (type == Plateform_type.bounce)
             {
+                SoundSingleton.Instance.PlayTrampoline();
+                
                 //Si collision par dessus   
                 if (Mathf.Abs(dist_x) <= plat_size_x & dist_y <= 0)
                 {

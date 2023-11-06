@@ -25,8 +25,8 @@ public class PlayerMoves : MonoBehaviour
     public bool malusEnergy = false;
     public bool OnPenduleGrabb;
     float vitesse;
-
     public Vector3 startingPosition;
+    private bool isDying = false;
     
     // Start is called before the first frame update
     void Start()
@@ -171,14 +171,19 @@ public class PlayerMoves : MonoBehaviour
 
     public void Die()
     {
-        StartCoroutine(DieCoroutine(0.5f));
+        if (!isDying)
+        {
+            isDying = true;
+            StartCoroutine(DieCoroutine(0.5f));
+        }
     }
 
     private IEnumerator DieCoroutine(float secondsBeforeRespawn)
     {
-        //TODO : play death particules
+        SoundSingleton.Instance.PlayDie();
         yield return new WaitForSeconds(secondsBeforeRespawn);
         transform.position = startingPosition;
+        isDying = false;
     }
 
     #region sprint

@@ -33,6 +33,13 @@ public class GestionnaireScene : MonoBehaviour
   closeAdditiveScene.Invoke();
  }
 
+ public void Retry()
+ {
+  Time.timeScale = 1;
+  SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+  Debug.Log("test retry");
+ }
+
  public void Quit()
  {
   Application.Quit();

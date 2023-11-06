@@ -900,9 +900,9 @@ GameObject:
   m_Component:
   - component: {fileID: 354630529}
   - component: {fileID: 354630528}
-  - component: {fileID: 354630527}
   - component: {fileID: 354630526}
   - component: {fileID: 354630525}
+  - component: {fileID: 354630530}
   m_Layer: 0
   m_Name: ManagerSons
   m_TagString: Untagged
@@ -1102,29 +1102,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &354630527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 354630524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f482789144304524394e6a3ac95f1be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MenuMusic: {fileID: 0}
-  GameMusic: {fileID: 0}
-  SprintSound: {fileID: 8300000, guid: 4b6f9a166bef05b42bf23514a4c70b04, type: 3}
-  DashSound: {fileID: 8300000, guid: 07f9e643b21de6b4f930650d826c3e7d, type: 3}
-  JumpSound: {fileID: 8300000, guid: 263361932b3507c4c839e171c90a9cd7, type: 3}
-  GrabSound: {fileID: 0}
-  AscenseurSound: {fileID: 0}
-  MoveSound: {fileID: 0}
-  ClickSound: {fileID: 8300000, guid: 4770e887b844066479b458193d9b1d13, type: 3}
-  WinSound: {fileID: 8300000, guid: 17dde80cf2100ef4eba75097b4972804, type: 3}
-  DieSound: {fileID: 0}
 --- !u!114 &354630528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,6 +1134,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &354630530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354630524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f482789144304524394e6a3ac95f1be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuMusic: {fileID: 0}
+  GameMusic: {fileID: 0}
+  SprintSound: {fileID: 8300000, guid: 4b6f9a166bef05b42bf23514a4c70b04, type: 3}
+  DashSound: {fileID: 8300000, guid: 07f9e643b21de6b4f930650d826c3e7d, type: 3}
+  JumpSound: {fileID: 8300000, guid: 4e46838283591e84ca982923c7d96bf5, type: 3}
+  GrabSound: {fileID: 8300000, guid: 2658f3e142a781a4aa177cf28d6bf03c, type: 3}
+  TrampolineSound: {fileID: 8300000, guid: 9de3d93d5a6d54f4981595ba0c1ad66d, type: 3}
+  MoveSound: {fileID: 0}
+  ClickSound: {fileID: 8300000, guid: 4770e887b844066479b458193d9b1d13, type: 3}
+  WinSound: {fileID: 8300000, guid: 17dde80cf2100ef4eba75097b4972804, type: 3}
+  DieSound: {fileID: 8300000, guid: 3f8eb44d1ce99574a8f124cd43a4b5fc, type: 3}
 --- !u!1001 &385972179
 PrefabInstance:
   m_ObjectHideFlags: 0

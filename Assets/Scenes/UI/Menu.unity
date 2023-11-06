@@ -757,7 +757,7 @@ MonoBehaviour:
           m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 875276217}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
         m_MethodName: PlayClick
         m_Mode: 1
@@ -883,9 +883,9 @@ GameObject:
   m_Component:
   - component: {fileID: 875276212}
   - component: {fileID: 875276216}
-  - component: {fileID: 875276217}
   - component: {fileID: 875276215}
   - component: {fileID: 875276214}
+  - component: {fileID: 875276217}
   m_Layer: 0
   m_Name: ManagerSons
   m_TagString: Untagged
@@ -920,7 +920,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1022,7 +1022,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1114,9 +1114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSource: {fileID: 875276215}
   musicSource: {fileID: 875276214}
-  VolumeGeneral: 0.5
-  VolumeSons: 0.3
-  VolumeMusiques: 1
+  VolumeGeneral: 1
+  VolumeSons: 1
+  VolumeMusiques: 0.3
 --- !u!114 &875276217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,16 +1130,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuMusic: {fileID: 0}
-  GameMusic: {fileID: 0}
+  GameMusic: {fileID: 8300000, guid: abf10436d4f8da2469e212089441d90f, type: 3}
   SprintSound: {fileID: 8300000, guid: 4b6f9a166bef05b42bf23514a4c70b04, type: 3}
   DashSound: {fileID: 8300000, guid: 07f9e643b21de6b4f930650d826c3e7d, type: 3}
-  JumpSound: {fileID: 8300000, guid: 263361932b3507c4c839e171c90a9cd7, type: 3}
-  GrabSound: {fileID: 0}
-  AscenseurSound: {fileID: 0}
+  JumpSound: {fileID: 8300000, guid: f6154a9a203f7ae489caa1b81eeb07c6, type: 3}
+  GrabSound: {fileID: 8300000, guid: 2658f3e142a781a4aa177cf28d6bf03c, type: 3}
+  TrampolineSound: {fileID: 8300000, guid: 9de3d93d5a6d54f4981595ba0c1ad66d, type: 3}
   MoveSound: {fileID: 0}
   ClickSound: {fileID: 8300000, guid: 4770e887b844066479b458193d9b1d13, type: 3}
   WinSound: {fileID: 8300000, guid: 17dde80cf2100ef4eba75097b4972804, type: 3}
-  DieSound: {fileID: 0}
+  DieSound: {fileID: 8300000, guid: 3f8eb44d1ce99574a8f124cd43a4b5fc, type: 3}
 --- !u!1 &962920612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1371,7 @@ MonoBehaviour:
           m_StringArgument: Options
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 875276217}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
         m_MethodName: PlayClick
         m_Mode: 1
@@ -1859,7 +1859,7 @@ MonoBehaviour:
           m_StringArgument: Tutorial
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 875276217}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
         m_MethodName: PlayClick
         m_Mode: 1
@@ -2004,7 +2004,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 875276217}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundSingleton, Assembly-CSharp
         m_MethodName: PlayClick
         m_Mode: 1
