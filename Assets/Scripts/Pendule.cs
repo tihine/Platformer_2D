@@ -27,6 +27,10 @@ public class Pendule : MonoBehaviour
     float directionBalance;
     float longueurmax;
     int canBalance; //0 no, 1 yes
+    Transform[] pendules;
+    float[] poses;
+    float[] longueurs;
+    float[] vitesses;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +48,8 @@ public class Pendule : MonoBehaviour
         directionBalance = 0f;
         longueurmax = 1f;
         canBalance = 1;
-        currentPendule = null;  
+        currentPendule = null;
+        pendules = new Transform[4];
     }
     public bool getOnPendule()
     {
@@ -57,12 +62,12 @@ public class Pendule : MonoBehaviour
     public void OnPenduleExit()
     {
         OnPendule = false;
-        currentPendule = null;
     }
     public void OnGrabbEnter()
     { 
         if (OnPendule)
         {
+
             Grabbing = true;
             jumpScript.OnGround();
             Longueurpendule = (currentOriginPendule - transform.position).magnitude / 5;
@@ -86,6 +91,10 @@ public class Pendule : MonoBehaviour
         {
             VitTetaPendule = 0f;
             AccTetaPendule = 0f;
+            if(currentPendule != null)
+            {
+                EndOfPendule(currentPendule);
+            }
         }
         currentPendule = pendule.transform.parent;
         longueurmax = pendule.transform.localScale.y;
@@ -183,6 +192,11 @@ public class Pendule : MonoBehaviour
             }
             currentPendule.Rotate(new Vector3(0, 0, 1), PosTetaPendule-currentPendule.rotation.eulerAngles.z);
         }
+    }
+
+    private void EndOfPendule(Transform pendule)
+    {
+        pendule.rotation = Quaternion.identity;
     }
 
     public bool GetGrabbing()
