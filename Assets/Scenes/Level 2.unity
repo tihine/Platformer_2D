@@ -1090,7 +1090,7 @@ PrefabInstance:
     - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
       propertyPath: m_ActionEvents.Array.data[18].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1866793052}
     - target: {fileID: 7264205372930220892, guid: 8ec950d65e16e1347aa1f6d1f5c10e2b, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: moveCharacter
@@ -1657,7 +1657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5074352221972200280, guid: 6b5c08ac35300fb4b97c2284d9ee70ef, type: 3}
       propertyPath: sceneName
-      value: UI/Menu
+      value: Menu
       objectReference: {fileID: 0}
     - target: {fileID: 7236501594051082745, guid: 6b5c08ac35300fb4b97c2284d9ee70ef, type: 3}
       propertyPath: m_Name
@@ -3553,6 +3553,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a6ca684a61debe4da3941d202eff8e2, type: 3}
+--- !u!114 &1866793052 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8154563829034650896, guid: 9a6ca684a61debe4da3941d202eff8e2, type: 3}
+  m_PrefabInstance: {fileID: 1866793051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b08aa56f64b58b4ba00e97bb22d79a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1870565385
 PrefabInstance:
   m_ObjectHideFlags: 0

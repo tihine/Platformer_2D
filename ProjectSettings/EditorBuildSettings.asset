@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/TestFeaturesScenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/UI/Menu.unity
     guid: 8054e84d33af2364d965691d511351bb
@@ -17,12 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/Credits.unity
     guid: ca625d17688e8ba4d9f3e518ce271337
-  - enabled: 1
-    path: Assets/Scenes/TestFeaturesScenes/Manon.unity
-    guid: c2441c2eed803f14e93993ca5d3f83d5
-  - enabled: 1
-    path: Assets/Scenes/TestFeaturesScenes/Margot.unity
-    guid: 5ad3076c5cfa03746b47103e82560843
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 6832446b479e9804486cd4aba8677cb7
@@ -35,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: eaba55442666bf04c83e6262899a7343
+  - enabled: 1
+    path: Assets/Scenes/UI/Controls.unity
+    guid: 175fa8c2a8c8ed04ea33ef6a465c3701
   m_configObjects: {}
