@@ -4,11 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - SprintSound: {instanceID: 0}
-  - DashSound: {instanceID: 0}
-  - JumpSound: {instanceID: 0}
-  - ClickSound: {instanceID: 0}
-  - WinSound: {instanceID: 0}
+  - SprintSound: {fileID: 8300000, guid: 4b6f9a166bef05b42bf23514a4c70b04, type: 3}
+  - DashSound: {fileID: 8300000, guid: 07f9e643b21de6b4f930650d826c3e7d, type: 3}
+  - JumpSound: {fileID: 8300000, guid: 263361932b3507c4c839e171c90a9cd7, type: 3}
+  - ClickSound: {fileID: 8300000, guid: 4770e887b844066479b458193d9b1d13, type: 3}
+  - WinSound: {fileID: 8300000, guid: 17dde80cf2100ef4eba75097b4972804, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
