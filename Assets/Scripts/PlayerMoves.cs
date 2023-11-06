@@ -45,7 +45,7 @@ public class PlayerMoves : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(isMoving && !OnPenduleGrabb)
+        if(isMoving & !OnPenduleGrabb)
         {
             player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
         }

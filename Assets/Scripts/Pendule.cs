@@ -27,6 +27,10 @@ public class Pendule : MonoBehaviour
     float directionBalance;
     float longueurmax;
     int canBalance; //0 no, 1 yes
+    Transform[] pendules;
+    float[] poses;
+    float[] longueurs;
+    float[] vitesses;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +48,13 @@ public class Pendule : MonoBehaviour
         directionBalance = 0f;
         longueurmax = 1f;
         canBalance = 1;
+        currentPendule = null;
+        pendules = new Transform[4];
     }
-
+    public bool getOnPendule()
+    {
+        return OnPendule & Grabbing;
+    }
     public void OnPenduleEnter()
     {
         OnPendule = true;
@@ -55,23 +64,26 @@ public class Pendule : MonoBehaviour
         OnPendule = false;
     }
     public void OnGrabbEnter()
-    {
-        Grabbing = true;
+    { 
         if (OnPendule)
         {
+
+            Grabbing = true;
             jumpScript.OnGround();
             Longueurpendule = (currentOriginPendule - transform.position).magnitude / 5;
             playerMovesScript.setOnPendule(Grabbing);
+            
         }
     }
     public void OnGrabbExit()
     {
+
         Grabbing = false;
         if (OnPendule)
         {
             jumpScript.OnFall();
-            playerMovesScript.setOnPendule(Grabbing);
         }
+        playerMovesScript.setOnPendule(Grabbing);
     }
     public void SetCurrentPendule(GameObject pendule)
     {
@@ -79,9 +91,13 @@ public class Pendule : MonoBehaviour
         {
             VitTetaPendule = 0f;
             AccTetaPendule = 0f;
+            if(currentPendule != null)
+            {
+                EndOfPendule(currentPendule);
+            }
         }
         currentPendule = pendule.transform.parent;
-        longueurmax = pendule.transform.GetComponent<Renderer>().bounds.size.y;
+        longueurmax = pendule.transform.localScale.y;
         Longueurpendule = 1f;
         PosTetaPendule = currentPendule.transform.rotation.eulerAngles.z;
         currentOriginPendule = currentPendule.transform.position;
@@ -110,11 +126,13 @@ public class Pendule : MonoBehaviour
             directionBalance = direction.x;
             if(Grabbing & OnPendule)
             {
+                climbing = true;
                 VitTetaPendule += Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * directionBalance * speedBalance;
             }
         }
         if(context.phase == InputActionPhase.Canceled)
         {
+            climbing = false;
             directionClimb = 0;
             directionBalance = 0;
         }
@@ -126,23 +144,24 @@ public class Pendule : MonoBehaviour
         {
             if (Grabbing & OnPendule)
             {
+                jumpScript.OnGround();
                 Longueurpendule = (currentOriginPendule - transform.position).magnitude;
                 float climb = directionClimb * speedClimb * Time.fixedDeltaTime;
-                if (climbing & climb<Longueurpendule & Longueurpendule-climb < longueurmax)
+                if (climbing & climb < Longueurpendule & Longueurpendule - climb < longueurmax)
                 {
                     Longueurpendule -= climb;
                 }
                 float vitX = playerMovesScript.GetVitesseX();
                 PosTetaPendule += VitTetaPendule * Time.fixedDeltaTime;
                 VitTetaPendule += AccTetaPendule * Time.fixedDeltaTime;
-                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX*Mathf.Cos(PosTetaPendule*Mathf.PI/180)/50*Time.fixedDeltaTime * canBalance;
+                AccTetaPendule = -gravity * Mathf.Sin(PosTetaPendule * Mathf.PI / 180) / Longueurpendule + Mathf.Cos(PosTetaPendule * Mathf.PI / 180) * vitX * Mathf.Cos(PosTetaPendule * Mathf.PI / 180) / 50 * Time.fixedDeltaTime * canBalance;
                 transform.position = new Vector3(currentOriginPendule.x + Longueurpendule * Mathf.Sin(PosTetaPendule * Mathf.PI / 180), currentOriginPendule.y - Longueurpendule * Mathf.Cos(PosTetaPendule * Mathf.PI / 180), 0);
                 if (Mathf.Abs(PosTetaPendule) > currenttetamax & canBalance == 1)
                 {
                     VitTetaPendule = 0;
                     canBalance = 0;
                 }
-                else if(Mathf.Abs(PosTetaPendule) > currenttetamax)
+                else if (Mathf.Abs(PosTetaPendule) > currenttetamax)
                 {
                     canBalance = 0;
                 }
@@ -173,6 +192,11 @@ public class Pendule : MonoBehaviour
             }
             currentPendule.Rotate(new Vector3(0, 0, 1), PosTetaPendule-currentPendule.rotation.eulerAngles.z);
         }
+    }
+
+    private void EndOfPendule(Transform pendule)
+    {
+        pendule.rotation = Quaternion.identity;
     }
 
     public bool GetGrabbing()
