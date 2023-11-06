@@ -47,4 +47,9 @@ public class SoundManager : MonoBehaviour
         musicSource.volume = VolumeGeneral * VolumeMusiques;
     }
 
+    public void StopPlaying()
+    {
+        musicSource.clip = null;
+    }
+
 }

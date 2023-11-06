@@ -19,6 +19,7 @@ public class GestionnaireScene : MonoBehaviour
  public void ChangeScene(string sceneName)
  {
   SceneManager.LoadScene(sceneName);
+  Time.timeScale = 1;
  }
 
  public void LoadAdditiveScene(string sceneName)
