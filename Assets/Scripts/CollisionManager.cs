@@ -42,6 +42,7 @@ public class CollisionManager : MonoBehaviour
         yield return new WaitForSeconds(secondsBeforeRespawn);
         player.transform.position = playerMovesScript.startingPosition;
         player.SetActive(true);
+        playerMovesScript.StartCoroutine(playerMovesScript.RestoreEnergyCoroutine());
     }
 
     // Update is called once per frame

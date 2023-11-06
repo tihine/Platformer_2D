@@ -179,6 +179,7 @@ public class PlayerMoves : MonoBehaviour
         //TODO : play death particules
         yield return new WaitForSeconds(secondsBeforeRespawn);
         transform.position = startingPosition;
+        StartCoroutine(RestoreEnergyCoroutine());
     }
 
     #region sprint
@@ -259,7 +260,8 @@ public class PlayerMoves : MonoBehaviour
     }
     #endregion dash
 
-    IEnumerator RestoreEnergyCoroutine()
+    
+    public IEnumerator RestoreEnergyCoroutine()
     {
         if (energy < 20)
         {
