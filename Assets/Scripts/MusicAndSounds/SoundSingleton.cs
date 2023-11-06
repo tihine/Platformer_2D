@@ -13,9 +13,9 @@ public class SoundSingleton : MonoBehaviour
     [Header("Gameplay Sounds")]
     [SerializeField] private AudioClip SprintSound;
     [SerializeField] private AudioClip DashSound;
-    [SerializeField] private AudioClip JumpSound;
+    [SerializeField] public AudioClip JumpSound;
     [SerializeField] private AudioClip GrabSound;
-    [SerializeField] private AudioClip AscenseurSound;
+    [SerializeField] private AudioClip TrampolineSound;
     [SerializeField] private AudioClip MoveSound;
 
     [Header("UI Sounds")]
@@ -73,9 +73,9 @@ public class SoundSingleton : MonoBehaviour
         SoundManager.Instance.PlaySound(GrabSound);
     }
     
-    public void PlayAscenseur()
+    public void PlayTrampoline()
     {
-        SoundManager.Instance.PlaySound(AscenseurSound);
+        SoundManager.Instance.PlaySound(TrampolineSound);
     }
     
     public void PlayMove()

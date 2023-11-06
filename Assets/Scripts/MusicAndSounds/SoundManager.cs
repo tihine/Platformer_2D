@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,13 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad (gameObject);
+    }
+
+    private void Start()
+    {
+        Volume.changeVolume(VolumeGeneral);
+        Volume.changeVolumeSons(VolumeSons);
+        Volume.changeVolumeMusiques(VolumeMusiques);
     }
 
     public void PlaySound(AudioClip sound)

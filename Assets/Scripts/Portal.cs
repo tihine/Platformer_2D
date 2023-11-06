@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(sceneName);
+            SoundSingleton.Instance.PlayWin();
         }
     }
 }
