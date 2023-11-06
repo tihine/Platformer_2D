@@ -183,6 +183,7 @@ public class PlayerMoves : MonoBehaviour
         SoundSingleton.Instance.PlayDie();
         yield return new WaitForSeconds(secondsBeforeRespawn);
         transform.position = startingPosition;
+        StartCoroutine(RestoreEnergyCoroutine());
         isDying = false;
     }
 
@@ -264,7 +265,8 @@ public class PlayerMoves : MonoBehaviour
     }
     #endregion dash
 
-    IEnumerator RestoreEnergyCoroutine()
+    
+    public IEnumerator RestoreEnergyCoroutine()
     {
         if (energy < 20)
         {
