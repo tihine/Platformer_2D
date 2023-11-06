@@ -2073,6 +2073,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1877957234473668064, guid: 48a85ca4922a07342868c64554018a88, type: 3}
+      propertyPath: tetamax
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6102247146821352754, guid: 48a85ca4922a07342868c64554018a88, type: 3}
       propertyPath: m_Name
       value: Liane
