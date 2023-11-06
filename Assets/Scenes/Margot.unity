@@ -1146,6 +1146,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9149866158565779237, guid: 80f48654505225a41955f8a07200e4d0, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9149866158565779237, guid: 80f48654505225a41955f8a07200e4d0, type: 3}
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 1264555749}

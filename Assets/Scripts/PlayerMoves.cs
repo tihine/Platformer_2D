@@ -24,6 +24,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] private float distanceBeforeDeath = -8;
     public bool malusEnergy = false;
     public bool OnPenduleGrabb;
+    float vitesse;
 
     public Vector3 startingPosition;
     
@@ -40,6 +41,7 @@ public class PlayerMoves : MonoBehaviour
         direction = Vector2.zero;
         isMoving = false;
         startingPosition = transform.position;
+        vitesse = 0;
     }
 
     // Update is called once per frame
@@ -47,8 +49,30 @@ public class PlayerMoves : MonoBehaviour
     {
         if(isMoving & !OnPenduleGrabb)
         {
-            player_transform.Translate(direction*Time.fixedDeltaTime*new_speed);
+            if (vitesse < new_speed)
+            {
+                vitesse += new_speed / 20;
+            }
+            else
+            {
+                vitesse = new_speed;
+            }
+            player_transform.Translate(direction*Time.fixedDeltaTime*vitesse);
         }
+        if(!isMoving & !OnPenduleGrabb)
+        {
+            if(vitesse > 0)
+            {
+                vitesse -= new_speed / 20;
+            }
+            else
+            {
+                vitesse = 0;
+            }
+            player_transform.Translate(direction * Time.fixedDeltaTime * vitesse);
+        }
+        print(vitesse);
+
         sprint(isSprinting);
 
         if (transform.position.y < distanceBeforeDeath)
