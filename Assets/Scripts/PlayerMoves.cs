@@ -71,7 +71,6 @@ public class PlayerMoves : MonoBehaviour
             }
             player_transform.Translate(direction * Time.fixedDeltaTime * vitesse);
         }
-        print(vitesse);
 
         sprint(isSprinting);
 
