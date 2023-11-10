@@ -5,10 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerMoves : MonoBehaviour
 {
+    [Header("Game Design Settings")]
     [SerializeField] float speed = 4f;
     [SerializeField] int sprint_factor = 3;
-    [SerializeField] int dash_factor = 20;
-    [SerializeField] float dash_timer = 1f;
+    [SerializeField] int dash_factor = 4;
+    [SerializeField] float dash_timer = 0.5f;
+    [SerializeField] public float energy;
+    [SerializeField] float energy_loss_sprint;
+    [SerializeField] private float distanceBeforeDeath = -8;
+    
+    [Header("Others Settings")]
     [SerializeField] float new_speed;
     Transform player_transform;
     [SerializeField] ParticleSystem particles;
@@ -19,12 +25,13 @@ public class PlayerMoves : MonoBehaviour
     bool isDashing = false;
     Vector2 direction = Vector2.zero;
     [SerializeField] public EnergyBar energyBar;
-    [SerializeField] public float energy;
-    [SerializeField] float energy_loss_sprint;
-    [SerializeField] private float distanceBeforeDeath = -8;
+   
+    [HideInInspector]
     public bool malusEnergy = false;
+    [HideInInspector]
     public bool OnPenduleGrabb;
     float vitesse;
+    [HideInInspector]
     public Vector3 startingPosition;
     private bool isDying = false;
     

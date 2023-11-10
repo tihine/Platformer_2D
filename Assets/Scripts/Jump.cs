@@ -8,19 +8,21 @@ public class Jump : MonoBehaviour
 {
     private PlayerMoves playerMovesScript;
 
+    [Header("Game Design Settings")]
     [SerializeField] private float gravity = 9.81f;
-    [SerializeField] private float masse = 2;
     [SerializeField] private float jumpSpeed = 8f;
     [SerializeField] private float timeOfJump = 0.5f;
+    
     private float timer;
     private float time;
-    
+    [HideInInspector]
     public bool isFalling = false;
     private bool isJumping = true;
     private bool isOnGround = true;
     private float vitesse;
     private float acceleration;
     private float coefFrottementWall = 1f;
+    [HideInInspector]
     public int nbPressedXButton;
     void Start()
     {

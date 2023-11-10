@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 
 public class Pendule : MonoBehaviour
 {
+    [Header("Game Design Settings")]
     [SerializeField]
     float speedClimb = 2f;
     [SerializeField]
