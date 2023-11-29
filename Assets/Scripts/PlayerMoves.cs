@@ -34,7 +34,10 @@ public class PlayerMoves : MonoBehaviour
     [HideInInspector]
     public Vector3 startingPosition;
     private bool isDying = false;
-    
+
+    public PlayFabManager playFabManager;
+    int maxPlatform = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -180,6 +183,7 @@ public class PlayerMoves : MonoBehaviour
         if (!isDying)
         {
             isDying = true;
+            playFabManager.SendLeaderBoard(maxPlatform);
             StartCoroutine(DieCoroutine(0.5f));
         }
     }

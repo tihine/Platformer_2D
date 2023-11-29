@@ -10,21 +10,26 @@ public class TutorialManager: MonoBehaviour
     public GameObject[] texts;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Portal;
+    [SerializeField] GameObject button;
     private int textsIndex = 0;
     private PlayerMoves playerMovesScript;
     private Jump jumpScript;
     private bool onPortal = false;
     private bool tutorialDone = false;
 
+    public PlayFabManager playFabManager;
+    float maxTime = 0f;
+
     void Start()
     {
         jumpScript = Player.GetComponent<Jump>();
         playerMovesScript = Player.GetComponent<PlayerMoves>();
         texts[textsIndex].SetActive(true);
+        button.SetActive(false);
     }
     void Update()
     {
-       
+        maxTime += Time.deltaTime;
         if (textsIndex == 0)
         {
             if(playerMovesScript.GetVitesseX()!=0)
@@ -62,11 +67,16 @@ public class TutorialManager: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision"); 
-        if (collision.gameObject.tag == "Player" && tutorialDone==true)
+        Debug.Log("collision");
+        if (collision.gameObject.tag == "Player" && tutorialDone == true)
+
         {
+            var t = (int)(-maxTime * 100);
             SoundSingleton.Instance.PlayWin();
-            SceneManager.LoadScene("Tutorial2");
+            Debug.Log("t =" + t);
+            playFabManager.SendLeaderBoard(t);
+            button.SetActive(true);
+            //SceneManager.LoadScene("Tutorial2");
         }
         
     }
