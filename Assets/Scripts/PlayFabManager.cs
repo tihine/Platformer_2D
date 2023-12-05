@@ -77,7 +77,7 @@ public class PlayFabManager : MonoBehaviour
         var request = new GetLeaderboardRequest
         {
             StatisticName = "PlatformScore",
-            StartPosition = 1,
+            StartPosition = 0,
             MaxResultsCount = 10
         };
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnError);
