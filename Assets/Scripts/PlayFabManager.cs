@@ -10,6 +10,7 @@ public class PlayFabManager : MonoBehaviour
 {
     public TMP_InputField usernameInput;
     public GameObject usernameWindow;
+    [SerializeField] TMP_Text scoreText;
     // Start is called before the first frame update
     void Start()
     {
@@ -84,10 +85,13 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
+        scoreText.text = "";
         foreach(var item in result.Leaderboard)
         {
             Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+            scoreText.text += item.Position + " " + item.DisplayName + " " + item.StatValue+"\n";
         }
+        scoreText.gameObject.SetActive(true);
     }
 
     public void SubmitNameButton()
