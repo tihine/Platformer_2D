@@ -11,10 +11,15 @@ public class PlayFabManager : MonoBehaviour
     public TMP_InputField usernameInput;
     public GameObject usernameWindow;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] GameObject canvasGame;
+    [SerializeField] GameObject canvasLeaderboard;
+    [SerializeField] GameObject rowPrefab;
+    [SerializeField] Transform tableRows;
     // Start is called before the first frame update
     void Start()
     {
         usernameWindow.SetActive(false);
+        canvasLeaderboard.SetActive(false);
         Login();
     }
 
@@ -85,13 +90,25 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
-        scoreText.text = "";
+        //scoreText.text = "";
+        foreach(Transform item in tableRows)
+        {
+            Destroy(item.gameObject);
+        }
+
         foreach(var item in result.Leaderboard)
         {
+            GameObject newRow = Instantiate(rowPrefab, tableRows);
             Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
-            scoreText.text += item.Position + " " + item.DisplayName + " " + item.StatValue+"\n";
+            TMP_Text[] texts = newRow.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = item.Position.ToString();
+            texts[1].text = item.DisplayName;
+            texts[2].text = item.StatValue.ToString();
+            //scoreText.text += item.Position + " " + item.DisplayName + " " + item.StatValue+"\n";
         }
-        scoreText.gameObject.SetActive(true);
+        canvasGame.SetActive(false);
+        canvasLeaderboard.SetActive(true);
+        //scoreText.gameObject.SetActive(true);
     }
 
     public void SubmitNameButton()

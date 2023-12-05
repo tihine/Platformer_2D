@@ -69,7 +69,6 @@ public class TutorialManager: MonoBehaviour
     {
         Debug.Log("collision");
         if (collision.gameObject.tag == "Player" && tutorialDone == true)
-
         {
             var t = (int)(-maxTime * 100);
             SoundSingleton.Instance.PlayWin();
