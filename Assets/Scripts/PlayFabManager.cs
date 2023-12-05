@@ -21,7 +21,7 @@ public class PlayFabManager : MonoBehaviour
     {
         var request = new LoginWithCustomIDRequest
         {
-            CustomId = "Test",
+            CustomId = SystemInfo.deviceUniqueIdentifier,
             CreateAccount = true,
             InfoRequestParameters = new GetPlayerCombinedInfoRequestParams
             {
@@ -35,8 +35,11 @@ public class PlayFabManager : MonoBehaviour
     {
         Debug.Log("Successful login/account create");
         string name = null;
-        if(result.InfoResultPayload.PlayerProfile!=null)
+        if (result.InfoResultPayload.PlayerProfile != null)
+        {
             name = result.InfoResultPayload.PlayerProfile.DisplayName;
+            Debug.Log(name);
+        }
         if (name == null)
             usernameWindow.SetActive(true);
     }
