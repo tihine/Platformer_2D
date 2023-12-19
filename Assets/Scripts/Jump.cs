@@ -97,6 +97,30 @@ public class Jump : MonoBehaviour
             //playerMovesScript.SetSpeed(newSpeed / 2);
         }
     }
+    
+    public void JumpPression()
+    {
+        if (isOnGround)
+        {
+            nbPressedXButton = 0;
+        }
+        
+        if (isOnGround || nbPressedXButton < 2)
+        {
+            timer = Time.time + timeOfJump;
+            time = Time.time;
+
+            nbPressedXButton += 1;
+
+            SoundSingleton.Instance.PlayJump();
+
+            //On saute et on est plus sur le sol. On ne pourra plus resauter tant qu'on est pas sur le sol ! (sauf double saut)
+            vitesse = vitesse + jumpSpeed;
+            isJumping = true;
+            isOnGround = false;
+            isFalling= false;
+        }
+    }
     public float GetVitesseY()
     {
         if (isOnGround)

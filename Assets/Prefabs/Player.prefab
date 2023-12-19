@@ -5058,9 +5058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 9149866158565779237}
+  jumpScript: {fileID: 5231906252548276136}
   serialPort: COM5
   baudrate: 9600
-  river: {fileID: 0}
 --- !u!1 &7063598639778682875
 GameObject:
   m_ObjectHideFlags: 0

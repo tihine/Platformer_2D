@@ -5,6 +5,7 @@ using UnityEngine;
 public class SerialHandler : MonoBehaviour
 {
     [SerializeField] private PlayerMoves player;
+    [SerializeField] private Jump jumpScript;
     private SerialPort _serial;
 
     // Common default serial device on a Windows machine
@@ -20,9 +21,6 @@ public class SerialHandler : MonoBehaviour
         _serial.NewLine = "\n";
         // Once configured, the serial communication must be opened just like a file : the OS handles the communication.
         _serial.Open();
-        
-        //_riverRigidbody2D = river.GetComponentInParent<Rigidbody2D>();
-        //_riverSprite = river.GetComponentInParent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -44,8 +42,8 @@ public class SerialHandler : MonoBehaviour
                 player.isDashing = true;
                 player.dash();
                 break;
-            case "wet":
-                
+            case "jump":
+                jumpScript.JumpPression();
                 break;
         }
     }
