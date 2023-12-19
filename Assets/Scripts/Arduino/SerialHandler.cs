@@ -15,7 +15,6 @@ public class SerialHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("TEST START");
         _serial = new SerialPort(serialPort,baudrate);
         // Guarantee that the newline is common across environments.
         _serial.NewLine = "\n";
@@ -50,6 +49,7 @@ public class SerialHandler : MonoBehaviour
 
     public void SetLed(bool newState)
     {
+        Debug.Log("off ?" + newState);
         _serial.WriteLine(newState ? "LED ON" : "LED OFF");
     }
     

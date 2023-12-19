@@ -5008,6 +5008,7 @@ MonoBehaviour:
   particles: {fileID: 2253393329064364257}
   dash_particles: {fileID: 5660005736571889604}
   death_particules: {fileID: 5344551170258886984}
+  serialHandlerScript: {fileID: 6028625011609115664}
   isSprinting: 0
   isDashing: 0
   energyBar: {fileID: 0}

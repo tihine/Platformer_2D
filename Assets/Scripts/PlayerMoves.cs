@@ -13,20 +13,21 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] public float energy;
     [SerializeField] float energy_loss_sprint;
     [SerializeField] private float distanceBeforeDeath = -8;
-    
+
     [Header("Others Settings")]
     [SerializeField] float new_speed;
     Transform player_transform;
     [SerializeField] ParticleSystem particles;
     [SerializeField] ParticleSystem dash_particles;
     [SerializeField] public ParticleSystem death_particules;
+    [SerializeField] private SerialHandler serialHandlerScript;
     bool isMoving = false;
     public bool isSprinting = false;
     public bool isDashing = false;
     Vector2 direction = Vector2.zero;
     [SerializeField] public EnergyBar energyBar;
    
-    [HideInInspector]
+    //[HideInInspector]
     public bool malusEnergy = false;
     [HideInInspector]
     public bool OnPenduleGrabb;
@@ -49,6 +50,7 @@ public class PlayerMoves : MonoBehaviour
         isMoving = false;
         startingPosition = transform.position;
         vitesse = 0;
+        serialHandlerScript.SetLed(false);
     }
 
     // Update is called once per frame
@@ -218,6 +220,7 @@ public class PlayerMoves : MonoBehaviour
             if (energy <= 0)
             {
                 malusEnergy = true;
+                serialHandlerScript.SetLed(true);
             }
         }
         else
@@ -260,6 +263,7 @@ public class PlayerMoves : MonoBehaviour
             if (energy <= 0)
             {
                 malusEnergy = true;
+                serialHandlerScript.SetLed(true);
             }
             new_speed = speed;
             dash_duration = 0f;
@@ -281,6 +285,7 @@ public class PlayerMoves : MonoBehaviour
                     yield return new WaitForSeconds(1.5f);
                 }
                 malusEnergy = false;
+                serialHandlerScript.SetLed(false);
             }
             energy += 1;
             energyBar.SetEnergy(energy);

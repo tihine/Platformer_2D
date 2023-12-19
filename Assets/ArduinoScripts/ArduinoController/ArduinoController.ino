@@ -7,7 +7,8 @@ int pressionPin = A5;
 
 //Bouton dash = Pin 2
 //Ventilo = Pin ~10
-//Pression = Pin ~5
+//Pression = Pin A5
+//LED = Pin 4
 
 // Interrupt handler, sets the flag for later processing
 void buttonPress() {
@@ -52,12 +53,14 @@ void loop() {
     button_flag = false;
   }
 
+  //Press Captor to jump
   int pressionOnButton = analogRead(pressionPin);
-
   if(pressionOnButton > 100) {
     Serial.println("jump");
     delay(500);
   }
+
+
 }
 
 // Handles incoming messages
@@ -66,8 +69,8 @@ void serialEvent()
 {
   String message = Serial.readStringUntil('\n');
   if (message == "LED ON") {
-    digitalWrite(13,HIGH);
+    digitalWrite(4,HIGH);
   } else if (message == "LED OFF") {
-    digitalWrite(13,LOW);
+    digitalWrite(4,LOW);
   }
 }
