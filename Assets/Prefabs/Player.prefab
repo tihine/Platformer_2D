@@ -4909,6 +4909,7 @@ GameObject:
   - component: {fileID: 9149866158565779237}
   - component: {fileID: 5231906252548276136}
   - component: {fileID: 2518815039150231247}
+  - component: {fileID: 6028625011609115664}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5000,14 +5001,16 @@ MonoBehaviour:
   sprint_factor: 3
   dash_factor: 4
   dash_timer: 0.5
+  energy: 20
+  energy_loss_sprint: 0.1
+  distanceBeforeDeath: -8
   new_speed: 0
   particles: {fileID: 2253393329064364257}
   dash_particles: {fileID: 5660005736571889604}
   death_particules: {fileID: 5344551170258886984}
+  isSprinting: 0
+  isDashing: 0
   energyBar: {fileID: 0}
-  energy: 20
-  energy_loss_sprint: 0.1
-  distanceBeforeDeath: -8
   malusEnergy: 0
   OnPenduleGrabb: 0
   startingPosition: {x: 0, y: 0, z: 0}
@@ -5024,7 +5027,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 9.81
-  masse: 2
   jumpSpeed: 6
   timeOfJump: 0.5
   isFalling: 0
@@ -5043,6 +5045,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedClimb: 2
   speedBalance: 3
+--- !u!114 &6028625011609115664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456820940396606161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757786f42a6ac6b47ac5621ce0310b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 9149866158565779237}
+  serialPort: COM5
+  baudrate: 9600
+  river: {fileID: 0}
 --- !u!1 &7063598639778682875
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,8 +21,8 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] ParticleSystem dash_particles;
     [SerializeField] public ParticleSystem death_particules;
     bool isMoving = false;
-    bool isSprinting = false;
-    bool isDashing = false;
+    public bool isSprinting = false;
+    public bool isDashing = false;
     Vector2 direction = Vector2.zero;
     [SerializeField] public EnergyBar energyBar;
    
@@ -122,7 +122,6 @@ public class PlayerMoves : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         new_speed = newSpeed;
-        Debug.Log("test");
     }
     
     public float GetSpeed()
@@ -220,7 +219,6 @@ public class PlayerMoves : MonoBehaviour
             {
                 malusEnergy = true;
             }
-            Debug.Log("spriint");
         }
         else
         {
@@ -235,7 +233,6 @@ public class PlayerMoves : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            Debug.Log("dashing");
             isDashing = true;
             dash();
         }
@@ -255,7 +252,6 @@ public class PlayerMoves : MonoBehaviour
             dash_particles.Play();
             while (dash_duration < dash_timer)
             {
-                Debug.Log(dash_duration);
                 player_transform.Translate(direction * Time.fixedDeltaTime * new_speed);
                 dash_duration += Time.fixedDeltaTime;
             }
