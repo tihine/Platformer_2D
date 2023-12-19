@@ -15,10 +15,6 @@ void buttonPress() {
   button_flag = true;
 }
 
-void pressionPress() {
-  
-}
-
 void setup() {
   int buttonPin = 2;
   int ventiloPin = 10;
@@ -72,5 +68,12 @@ void serialEvent()
     digitalWrite(4,HIGH);
   } else if (message == "LED OFF") {
     digitalWrite(4,LOW);
+  }
+
+  if(message == "VENTIL_ON") {
+    analogWrite(10,255);
+  }
+  else if(message == "VENTIL_OFF") {
+    analogWrite(10,0);
   }
 }

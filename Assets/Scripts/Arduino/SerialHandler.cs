@@ -52,6 +52,11 @@ public class SerialHandler : MonoBehaviour
         Debug.Log("off ?" + newState);
         _serial.WriteLine(newState ? "LED ON" : "LED OFF");
     }
+
+    public void SetVentilo(bool newState)
+    {
+        _serial.WriteLine(newState ? "VENTIL_ON" : "VENTIL_OFF");
+    }
     
     private void OnDestroy()
     {

@@ -222,9 +222,11 @@ public class PlayerMoves : MonoBehaviour
                 malusEnergy = true;
                 serialHandlerScript.SetLed(true);
             }
+            serialHandlerScript.SetVentilo(true);
         }
         else
         {
+            serialHandlerScript.SetVentilo(false);
             new_speed = speed;
             particles.gameObject.SetActive(false);
         }
