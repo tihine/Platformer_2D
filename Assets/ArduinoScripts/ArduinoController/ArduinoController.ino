@@ -81,7 +81,7 @@ void serialEvent()
   int read_bytes = 0;
      do {
     read_bytes += Serial.readBytesUntil('\n',buff,64);
-  } while(read_bytes < 64 || Serial.peek() == '\n');
+  } while(read_bytes < 64); //was while(read_bytes < 64 || Serial.peek() == '\n'); before
   if (Serial.peek() == '\n')
     Serial.read(); // Consume the delimiter if it is there.
   if (!strncmp(buff, "LED ON", 6)) {
