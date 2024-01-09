@@ -83,6 +83,8 @@ public class PlayerMoves : MonoBehaviour
 
         sprint(isSprinting);
 
+
+
         if (transform.position.y < distanceBeforeDeath)
         {
             Die();
@@ -222,6 +224,10 @@ public class PlayerMoves : MonoBehaviour
                 malusEnergy = true;
                 serialHandlerScript.SetLed(true);
             }
+            else if (energy < 8)
+            {
+                serialHandlerScript.SetLed(true);
+            }
             serialHandlerScript.SetVentilo(true);
         }
         else
@@ -287,7 +293,7 @@ public class PlayerMoves : MonoBehaviour
                     yield return new WaitForSeconds(1.5f);
                 }
                 malusEnergy = false;
-                serialHandlerScript.SetLed(false);
+                //serialHandlerScript.SetLed(false);
             }
             energy += 1;
             energyBar.SetEnergy(energy);

@@ -1,3 +1,5 @@
+#include <Wire.h>
+
 // The flag signals to the rest of the program an interrupt occured
 static bool button_flag = false;
 // Remember the state the dash in the Unity program is in
@@ -61,19 +63,37 @@ void loop() {
 
 // Handles incoming messages
 // Called by Arduino if any serial data has been received
+
+void read_message(char *buffer, const uint8_t match_len) {
+  uint8_t read_bytes = 0;
+  do {
+    Wire.readBytesUntil('\n',buffer,match_len);
+    
+
+  } while(read_bytes < match_len || Serial.peek() == '\n');
+  if (Serial.peek() == '\n')
+    Serial.read(); // Consume the delimiter if it is there.
+}
+
 void serialEvent()
 {
-  String message = Serial.readStringUntil('\n');
-  if (message == "LED ON") {
+  char buff[64];
+  int read_bytes = 0;
+     do {
+    read_bytes += Serial.readBytesUntil('\n',buff,64);
+  } while(read_bytes < 64 || Serial.peek() == '\n');
+  if (Serial.peek() == '\n')
+    Serial.read(); // Consume the delimiter if it is there.
+  if (!strncmp(buff, "LED ON", 6)) {
     digitalWrite(4,HIGH);
-  } else if (message == "LED OFF") {
+  } else if (!strncmp(buff, "LED OFF", 7)) {
     digitalWrite(4,LOW);
   }
 
-  if(message == "VENTIL_ON") {
+  if(!strncmp(buff, "VENTIL_ON", 9)) {
     analogWrite(10,255);
   }
-  else if(message == "VENTIL_OFF") {
+  else if(!strncmp(buff, "VENTIL_OFF", 10)) {
     analogWrite(10,0);
   }
 }

@@ -49,7 +49,7 @@ public class SerialHandler : MonoBehaviour
 
     public void SetLed(bool newState)
     {
-        Debug.Log("off ?" + newState);
+        Debug.Log("LED state : " + newState);
         _serial.WriteLine(newState ? "LED ON" : "LED OFF");
     }
 
